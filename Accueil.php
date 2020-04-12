@@ -21,6 +21,9 @@
 <?php  
 include "MenuDesign.php";
 ?>
+<?php  
+include "MenuDesign.php";
+?>
 
 </header>
 
