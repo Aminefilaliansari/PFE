@@ -37,11 +37,11 @@
        
 
           <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="email" id="email" placeholder="Email" required>
+            <input class="input100" type="text" name="mail" id="user" placeholder="Mail" required>
             <span class="focus-input100" data-placeholder=""></span>
           </div>
 
-          <div class="wrap-input100 validate-input" name="pass" id="pass">
+          <div class="wrap-input100 validate-input" name="passe" id="passe">
             <span class="btn-show-pass">
               <i class="zmdi zmdi-eye"></i>
             </span>
@@ -68,6 +68,40 @@
 </div>
 
 
+
+
+
+
+
+<?php
+   include('database.php');
+  
+   
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
+      // username and password sent from form 
+      
+      $myusername = mysqli_real_escape_string($conn,$_POST['mail']);
+      $mypassword = mysqli_real_escape_string($conn,$_POST['pass']); 
+      
+      $sql = "SELECT idAgence FROM agen WHERE mail = '$myusername' and password = '$mypassword'";
+      $result = mysqli_query($conn,$sql);
+      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+      $active = $row['active'];
+      
+      $count = mysqli_num_rows($result);
+      
+      // If result matched $myusername and $mypassword, table row must be 1 row
+		
+      if($count == 1) {
+         
+         $_SESSION['mail'] = $myusername;
+         
+         header("location: Etat_d'avancement.php");
+      }else {
+         echo '<script>alert("Your Login Name or Password is invalid") </script>' ;
+      }
+   }
+?>
 
 
 
