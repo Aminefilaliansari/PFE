@@ -1,5 +1,5 @@
  <?php
-$id =  $_POST['id'];
+  $id =  $_POST['id'];
   $nom = $_POST['nom'];
   $tel = $_POST['tel'];
   $adresse = $_POST['adr'];
@@ -27,8 +27,7 @@ if (!empty($id) || !empty($nom) || !empty($tel) || !empty($adresse) || !empty($m
       $stmt = $conn->prepare($INSERT);
       $stmt->bind_param("isisss", $id, $nom, $tel, $adresse, $mail,$password);
       $stmt->execute();
-      echo "Enregistrement réussi, <a href='authentification.php'>Authentification</a>
-";
+      echo "Enregistrement réussi, <a href='authentification.php'>Authentification</a>";
 	  
      } else {
       echo "Id déja enregistré";
