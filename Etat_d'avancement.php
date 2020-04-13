@@ -28,21 +28,21 @@
 </head>
 <header>
  <div style="background: #f2f2f2;"> 
+
 <?php  
 include "MenuDesign.php";
 ?>
+
 </div>
 </header>
 <body>
-
-
 
 
   <div class="limiter">
     <div class="container-main100">
       <div class="wrap-main550">
 
-<form method="POST" action="insert.php">
+<form method="POST" action="Function-insert.php">
 
  
 
@@ -93,8 +93,6 @@ include "MenuDesign.php";
       
 
           
-
-
 
 
           

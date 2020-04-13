@@ -2,7 +2,7 @@
 <?php include('database.php') ?>
 <html>
 <head>
-		<title> Suivi du projet </title>
+		<title> Inscription agent </title>
 		     <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -42,7 +42,7 @@ include "MenuDesign.php";
     <div class="container-main100">
       <div class="wrap-main550">
 
-<form method="POST" action="inscr.php">
+<form method="POST" action="Function-inscription.php">
 
  
 
@@ -77,14 +77,6 @@ include "MenuDesign.php";
           </div>
 
       
-
-          
-
-
-
-
-          
-          
 
 
 		<div class="container-main-form-btn" style=" padding-top: 60px;">
