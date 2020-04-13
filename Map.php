@@ -4,7 +4,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="">
-<link rel="stylesheet" type="text/css" href="css/app.css">
+<link rel="stylesheet" type="text/css" href="./css/app.css">
 		     <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 
@@ -71,7 +71,7 @@
 
 
 
-<script src="js/app.js"></script>
+<script src="./js/app.js"></script>
  </div>
 </body>
 </html>
