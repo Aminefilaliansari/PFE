@@ -49,7 +49,7 @@
 <div class="map__list">
 
 	<ul class="list-group">
-	<li class="list-group-item list-group-item-primary">Région Grand Casablanca </li>
+	<li class="list-group-item list-group-item-primary active">Région Grand Casablanca </li>
 	<li class="list-group-item list-group-item-primary">Région Rabat </li>
 	<li class="list-group-item list-group-item-primary">Région Oujda</li>
 	<li class="list-group-item list-group-item-primary">Région Salé </li>
