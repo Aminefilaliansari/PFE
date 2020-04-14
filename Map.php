@@ -62,7 +62,9 @@
 	<li class="list-group-item list-group-item-primary">Région Chaouia-Ouardigha</li>
 	<li class="list-group-item list-group-item-primary">Région Laâyoune-Boujdour-Sakia el Hamra</li>
 	<li class="list-group-item list-group-item-primary">Région L'Oriental</li>
-	<li class="list-group-item list-group-item-primary">Région Doukhala-Abda</li>
+	<li class="list-group-item list-group-item-primary">Région Tadla-Azilal</li>
+	<li class="list-group-item list-group-item-primary">Région Doukhala Abda</li>
+	<li class="list-group-item list-group-item-primary">Région Oued ed Dahab-Lagouira</li>
 	</ul>
 
 

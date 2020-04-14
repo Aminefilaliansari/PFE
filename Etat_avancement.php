@@ -40,7 +40,7 @@ include "MenuDesign.php";
 
   <div class="limiter">
     <div class="container-main100">
-      <div class="wrap-main550">
+      <div class="wrap-main-body">
 
 <form method="POST" action="Function-insert.php">
 

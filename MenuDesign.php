@@ -21,25 +21,25 @@
 
 
 <div class="all">
-<div class="lefter" onclick="location.href = '#';">
-  <div class="text"></div>
+<div class="lefter" onclick="location.href = 'Ajoute-user.php';">
+  <div class="text">Ajouter un utilisateur</div>
 </div>
-<div class="left" onclick="location.href = '#';">
-  <div class="text"></div>
+<div class="left" onclick="location.href = 'Consultation-projet.php';">
+  <div class="text">Consultation Projet</div>
 </div>
 <div class="center" onclick="location.href = '#';">
-  <div class="explainer"><span> MENU </br><?php if (isset($_SESSION['prenom'])) {
-                                        echo ''.$_SESSION['prenom'].''; 
+  <div class="explainer"><span> MENU </br><?php if (isset($_SESSION['nom'])) {
+                                        echo ''.$_SESSION['nom'].''; 
                                         } else {echo "";} ?></span></div>
   <div class="text" onclick="MyFunction();" ></div>
   </div>
-<div class="right" onclick="location.href = '#';">
-  <div class="text" href="/*.php"></div>
+<div class="right" onclick="location.href = 'Ajoute-projet.php';">
+  <div class="text">Ajouter un projet</div>
 </div>
 
 
-<div class="righter" onclick="location.href = '#';">
-  <div class="text"> </div>
+<div class="righter" onclick="location.href = 'Etat_avancement.php';">
+  <div class="text"> Etat d'avancement </div>
 </div>
 
 

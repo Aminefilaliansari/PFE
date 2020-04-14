@@ -40,15 +40,15 @@ include "MenuDesign.php";
 
   <div class="limiter">
     <div class="container-main100">
-      <div class="wrap-main550">
+      <div class="wrap-main-body">
 
 <form method="POST" action="Function-inscription.php">
 
  
 
            <div class="wrap-input100 validate-input" >
-		   <label align="right">Id Agence :</label>
-            <input class="input100" type="text" name="id" id="" placeholder="Id Agence *" required>
+		   <label align="right">Nom :</label>
+            <input class="input100" type="text" name="id" id="" placeholder="Nom *" required>
             <span class="focus-input100"></span>
           </div>
 
@@ -65,7 +65,7 @@ include "MenuDesign.php";
           </div>
 		  
 		  <div class="wrap-input100 validate-input" >
-		  <label align="right">Mail :</label>
+		  <label align="right">EMail :</label>
             <input class="input100" type="email" name="mail" id="" placeholder="Mail *" >
             <span class="focus-input100"></span>
           </div>

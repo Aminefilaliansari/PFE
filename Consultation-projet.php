@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<title> Ajouter </title>
+		<title> Consultation projet </title>
 		     <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="./vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -37,20 +37,18 @@ include "MenuDesign.php";
 
 
 
-  <div class="limiter">
     <div class="container-main100">
-      <div class="wrap-main550">
+      <div class="wrap-main-body">
 
 
 
-
+<div class="container">
 <div class="row justify-content-center">
-  
-
 
 <table class="table">
  <thead>
    <tr>
+     <th>ID Projet</th>
      <th>Titre de projet </th>
      <th>Description</th>
      <th>Budget</th>
@@ -71,9 +69,15 @@ $result = mysqli_query($bdd,$sql);
 while ( $row = mysqli_fetch_array($result,MYSQLI_ASSOC) ) {  ?> 
 
 <tr>
-<td><?php echo $row["TitreProjet"];  ?></td>
-<td><?php echo $row["Description"];  ?></td>
-<td><?php echo $row["Budget"];  ?></td>
+<td id="IdProjet"><?php echo $row["IdProjet"];  ?></td>
+<td id="TitreProjet"><?php echo $row["TitreProjet"];  ?></td>
+<td id="Description"><?php echo $row["Description"];  ?></td>
+<td id="Budget"><?php echo $row["Budget"];  ?></td>
+<td>
+  <a href="index.php?Modif=<?php echo $row["IdProjet"]; ?>" 
+  class="btn btn-info" name="<?php echo $row["IdProjet"]; ?>">Modifer</a>
+  <button class="btn btn-danger" onclick="supprojet()">Supprimer</button>
+</td>
 </tr>
 
 <?php  
@@ -82,14 +86,59 @@ while ( $row = mysqli_fetch_array($result,MYSQLI_ASSOC) ) {  ?>
  
 
 </table>
+</div>
+</div>
 
 
 </div>
+</div>
 
 
-</div>
-</div>
-</div>
+
+
+
+<script>
+
+function modifprojet(){
+
+var IdProjet= $('#IdProjet').val();
+var TitreProjet= $('#TitreProjet').val();  
+var Description = $('#Description').val(); 
+var Budget = $('#Budget').val(); 
+
+$.ajax({
+  type: "POST",
+  url : "function.php?p=modif"
+  data : "IdProjet="+IdProjet+"& TitreProjet="+TitreProjet+"& Description="+Description+"& Budget="+Budget,
+  success: function(msg) {
+
+    alert("Success");
+  } 
+
+});
+}
+
+
+function supprojet(){
+
+var IdProjet= $('#id').val();
+var TitreProjet= $('#id').val();  
+var Description = $('#id').val(); 
+var Budget = $('#id').val(); 
+
+$.ajax({
+  type: "POST",
+  url : "function.php?p=sup"
+  data : "IdProjet="+IdProjet+"& TitreProjet="+TitreProjet+"& Description="+Description+"& Budget="+Budget,
+  success: function(msg) {
+
+    alert("Success");
+  } 
+
+});
+
+
+</script>
 
 
 
