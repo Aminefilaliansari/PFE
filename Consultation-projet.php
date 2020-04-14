@@ -41,68 +41,51 @@ include "MenuDesign.php";
     <div class="container-main100">
       <div class="wrap-main550">
 
-<form method="POST">
-
- <span class="main100-form-title p-b-26">
-            AJOUTER un projet
-          </span>
-
-
-           <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="" id="" placeholder="Région *" required>
-            <span class="focus-input100"></span>
-          </div>
-
-          <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="" id="" placeholder="Donnée 02 *"  required>
-            <span class="focus-input100"></span>
-          </div>
-
-          <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="" id="" placeholder="Donnée 03 *" required>
-            <span class="focus-input100"></span>
-          </div>
-
-          <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="" id="" placeholder="Donnée 04" required>
-            <span class="focus-input100"></span>
-          </div>
-
-      
-
-          <div class="wrap-input100 ">
-					<span class="label-input100">Option</span>
-					<div>
-						<select class="selection-2" name="" id="Option">
-							<option>Option 01</option>
-							<option>Option 02</option>
-						</select>
-					</div>
-					<span class="focus-input100"></span>
-				</div>
 
 
 
-
-          <div class=" validate-input" >	
-          	<label for="image" style="color: #7c7d7f;"> Donnée upload </label>  <br>
-          	<input type="file" name="" id="" placeholder="Image"/>
-          </div>
-          
+<div class="row justify-content-center">
+  
 
 
-		<div class="container-main-form-btn" style=" padding-top: 60px;">
-            <div class="wrap-main100-form-btn">
-              <div class="main100-form-bgbtn"></div>
-              <button type="submit" class="main100-form-btn" name="Valider">
-                Ajouter
-              </button>
-            </div>
-          </div>
+<table class="table">
+ <thead>
+   <tr>
+     <th>Titre de projet </th>
+     <th>Description</th>
+     <th>Budget</th>
+     <th colspan="2">Action</th>
+   </tr>
 
 
+ </thead> 
+ 
+ <?php  
 
-</form>
+
+include("database.php");
+ $sql = "SELECT * FROM projet";
+$result = mysqli_query($bdd,$sql);
+
+
+while ( $row = mysqli_fetch_array($result,MYSQLI_ASSOC) ) {  ?> 
+
+<tr>
+<td><?php echo $row["TitreProjet"];  ?></td>
+<td><?php echo $row["Description"];  ?></td>
+<td><?php echo $row["Budget"];  ?></td>
+</tr>
+
+<?php  
+}
+?>
+ 
+
+</table>
+
+
+</div>
+
 
 </div>
 </div>

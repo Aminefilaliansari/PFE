@@ -14,10 +14,8 @@
     exit;
 }
 
-echo "Succès : Une connexion correcte à MySQL a été faite! La base de donnée my_db est géniale." . PHP_EOL;
-echo "Information d'hôte : " . mysqli_get_host_info($bdd) . PHP_EOL;
-
-mysqli_close($bdd);
+//echo "Succès : Une connexion correcte à MySQL a été faite! La base de donnée my_db est géniale." . PHP_EOL;
+//echo "Information d'hôte : " . mysqli_get_host_info($bdd) . PHP_EOL;
 
 
 

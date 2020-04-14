@@ -44,51 +44,27 @@ include "MenuDesign.php";
 <form method="POST">
 
  <span class="main100-form-title p-b-26">
-            AJOUTER un projet
+            Ajouter un projet
           </span>
 
 
            <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="" id="" placeholder="Région *" required>
+            <input class="input100" type="text" name="Titre" id="Titre" placeholder="Titre de projet *" required>
             <span class="focus-input100"></span>
           </div>
 
           <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="" id="" placeholder="Donnée 02 *"  required>
+            <input class="input100" type="text" name="Descrip" id="Descrip" placeholder="Description *"  required>
             <span class="focus-input100"></span>
           </div>
 
           <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="" id="" placeholder="Donnée 03 *" required>
+            <input class="input100" type="text" name="Budget" id="Budget" placeholder="Budget *" required>
             <span class="focus-input100"></span>
           </div>
 
-          <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="" id="" placeholder="Donnée 04" required>
-            <span class="focus-input100"></span>
-          </div>
-
-      
-
-          <div class="wrap-input100 ">
-					<span class="label-input100">Option</span>
-					<div>
-						<select class="selection-2" name="" id="Option">
-							<option>Option 01</option>
-							<option>Option 02</option>
-						</select>
-					</div>
-					<span class="focus-input100"></span>
-				</div>
 
 
-
-
-          <div class=" validate-input" >	
-          	<label for="image" style="color: #7c7d7f;"> Donnée upload </label>  <br>
-          	<input type="file" name="" id="" placeholder="Image"/>
-          </div>
-          
 
 
 		<div class="container-main-form-btn" style=" padding-top: 60px;">
@@ -107,6 +83,27 @@ include "MenuDesign.php";
 </div>
 </div>
 </div>
+
+
+<?php
+  
+  include ("database.php");
+  
+  if (isset($_POST['Titre']) && ($_POST['Descrip']) && ($_POST['Budget'])  ) 
+
+  {
+    
+
+  $req = "INSERT INTO Projet ( TitreProjet , Description , Budget ) VALUES ('" . $_POST['Titre'] . "' , '" . $_POST['Descrip'] . "' , '" . $_POST['Budget'] .  " ') ";
+                
+   mysqli_query($bdd,$req);
+           
+
+   echo  "<p style='color:green;text-align:center;'>Le produit est ajouteé avec succès </p>";
+  }
+  
+  
+  ?>
 
 
 

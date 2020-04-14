@@ -41,13 +41,28 @@
             <span class="focus-input100" data-placeholder=""></span>
           </div>
 
-          <div class="wrap-input100 validate-input" name="pass" id="pass">
+          <div class="wrap-input100 validate-input">
             <span class="btn-show-pass">
               <i class="zmdi zmdi-eye"></i>
             </span>
             <input class="input100" type="password" name="pass" placeholder="Mot de passe" required>
             <span class="focus-input100" data-placeholder=""></span>
           </div>
+
+
+            
+          <span class="label-input100">Role</span>
+          <div>
+            <select class="selection-2" name="role" id="role">
+              <option>Admin</option>
+              <option>Agence</option>
+              <option>Etablissement</option>
+            </select>
+          </div>
+      
+
+
+
 
           <div class="container-main100-form-btn">
             <div class="wrap-main100-form-btn">
@@ -75,16 +90,26 @@ session_start();
      
         include("database.php");
 
-if(isset($_POST['email']) && isset($_POST['pass']) && isset($_POST['submit']) )
+if( isset($_POST['email']) && isset($_POST['pass']) && isset($_POST['submit']) && isset($_POST['role']) )
 {
-    $emailconnect = mysqli_real_escape_string($bdd,$_POST['email']);
-    $passoriginal = mysqli_real_escape_string($bdd,$_POST['pass']); 
+    $emailconnect = $_POST['email'];
+    $passoriginal = $_POST['pass']; 
+    $role = $_POST['role']; 
     
     if(!empty($emailconnect) && !empty($passoriginal))
     {
       
        
+      if ($role =="Agence" || $role=="Etablissement") {
+        $sql = "SELECT * FROM user WHERE email = '" . $emailconnect . "' ";
+        
+      }
+      else {
       $sql = "SELECT * FROM Admin WHERE email = '" . $emailconnect . "' ";
+      }
+
+
+
       $result = mysqli_query($bdd,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
@@ -95,15 +120,16 @@ if(isset($_POST['email']) && isset($_POST['pass']) && isset($_POST['submit']) )
         
       if($count == 1) 
       {
-         if(password_verify($passoriginal, $row['pass']))
+         if($passoriginal == $row['Password'])
                 {
                      $_SESSION['email'] = $row['email'];
-                     $_SESSION['id'] = $row['Code_client'];
-                     $_SESSION['prenom'] = $row['prenom'];
+                     $_SESSION['id'] = $row['IdAdmin'];
+                     $_SESSION['nom'] = $row['Nom'];
+                     $_SESSION['role'] = $role;
 
                      
 
-                     header('Location: index.php?id='.$_SESSION['id'].'');
+                     header('Location: Accueil.php?id='.$_SESSION['id'].'');
                      exit;
                 }
                 else
