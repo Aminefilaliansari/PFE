@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 14 Avril 2020 à 22:52
+-- Généré le :  Mer 15 Avril 2020 à 14:06
 -- Version du serveur :  10.1.21-MariaDB
 -- Version de PHP :  5.6.30
 
@@ -52,8 +52,51 @@ CREATE TABLE `avancementprojet` (
   `idprojet` int(10) NOT NULL,
   `iduser` int(10) NOT NULL,
   `Label` varchar(50) NOT NULL,
-  `Etat` int(50) NOT NULL,
-  `Commentaire` text NOT NULL
+  `Etat` float NOT NULL,
+  `Commentaire` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `dateprojet`
+--
+
+CREATE TABLE `dateprojet` (
+  `idprojet` int(11) NOT NULL,
+  `dateAuthentif` date DEFAULT NULL,
+  `dateDistribut` date DEFAULT NULL,
+  `dateMark` date DEFAULT NULL,
+  `dateExecut` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `distruberprojet`
+--
+
+CREATE TABLE `distruberprojet` (
+  `idprojet` int(10) NOT NULL,
+  `idadmin` int(10) DEFAULT NULL,
+  `iduser` int(10) DEFAULT NULL,
+  `NomExcute` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `financeprojet`
+--
+
+CREATE TABLE `financeprojet` (
+  `Idfin` int(11) NOT NULL,
+  `idprojet` int(11) DEFAULT NULL,
+  `Contrib_Etat` float DEFAULT NULL,
+  `Contrib_Etabli` float DEFAULT NULL,
+  `NbrEtab` int(10) DEFAULT NULL,
+  `durAdmin` float DEFAULT NULL,
+  `durEtabli` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -80,37 +123,29 @@ CREATE TABLE `notification` (
 
 CREATE TABLE `projet` (
   `IdProjet` int(10) NOT NULL,
-  `TitreProjet` varchar(50) NOT NULL,
-  `Description` text NOT NULL,
-  `Budget` double NOT NULL
+  `TitreProjet` varchar(50) DEFAULT NULL,
+  `typeprojet` varchar(50) DEFAULT NULL,
+  `sujetprojet` varchar(50) DEFAULT NULL,
+  `textprojet` text,
+  `objectifprojet` text,
+  `specialiteprojet` varchar(50) DEFAULT NULL,
+  `champprojet` varchar(50) DEFAULT NULL,
+  `indicenrprojet` int(10) DEFAULT NULL,
+  `voteprojet` int(10) DEFAULT NULL,
+  `normeExcutprojet` text,
+  `indicesNRProjet` float DEFAULT NULL,
+  `booleenPDR` tinyint(1) DEFAULT NULL,
+  `SourcePDF` blob
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `projet`
 --
 
-INSERT INTO `projet` (`IdProjet`, `TitreProjet`, `Description`, `Budget`) VALUES
-(1, 'Projet 01', 'Description du projet 01', 100000),
-(2, 'Projet 02', 'Description du projet 02', 200000),
-(6, 'Titre test 3', 'Descrip 03', 300000);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `suiviprojet`
---
-
-CREATE TABLE `suiviprojet` (
-  `id_sp` int(10) NOT NULL,
-  `iduser` int(10) NOT NULL,
-  `idadmin` int(10) NOT NULL,
-  `idprojet` int(10) NOT NULL,
-  `Pourcentage` int(50) NOT NULL,
-  `Date_Debut` date NOT NULL,
-  `Date_Fin` date NOT NULL,
-  `Budget_Debut` double NOT NULL,
-  `Budget_Fin` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `projet` (`IdProjet`, `TitreProjet`, `typeprojet`, `sujetprojet`, `textprojet`, `objectifprojet`, `specialiteprojet`, `champprojet`, `indicenrprojet`, `voteprojet`, `normeExcutprojet`, `indicesNRProjet`, `booleenPDR`, `SourcePDF`) VALUES
+(1, 'Projet 01', '', '', '', '', '', '', 0, 0, '', 0, 0, ''),
+(2, 'Projet 02', '', '', '', '', '', '', 0, 0, '', 0, 0, ''),
+(6, 'Titre test 3', '', '', '', '', '', '', 0, 0, '', 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -125,17 +160,8 @@ CREATE TABLE `user` (
   `Tel` varchar(50) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `Password` varchar(50) NOT NULL,
-  `IdZone` int(10) NOT NULL,
   `Adresse` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `user`
---
-
-INSERT INTO `user` (`IdUser`, `Role`, `Nom`, `Tel`, `Email`, `Password`, `IdZone`, `Adresse`) VALUES
-(4, 'Agence', 'Agence X', '0600000000', 'AgenceX@miage.pfe', '123456789', 1, NULL),
-(7, 'Etablissement', 'Etab X', '0600000000', 'EtabX@Miage.Pfe', '123456789', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -145,17 +171,11 @@ INSERT INTO `user` (`IdUser`, `Role`, `Nom`, `Tel`, `Email`, `Password`, `IdZone
 
 CREATE TABLE `zone` (
   `IdZone` int(10) NOT NULL,
-  `Ville` varchar(50) NOT NULL,
-  `Region` varchar(50) NOT NULL,
-  `Sousregion` varchar(50) NOT NULL
+  `idprojet` int(10) DEFAULT NULL,
+  `region` varchar(100) DEFAULT NULL,
+  `provaince` varchar(100) DEFAULT NULL,
+  `commune` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `zone`
---
-
-INSERT INTO `zone` (`IdZone`, `Ville`, `Region`, `Sousregion`) VALUES
-(1, 'Grand Casablanca', 'Anfa', 'anfa01');
 
 --
 -- Index pour les tables exportées
@@ -176,6 +196,27 @@ ALTER TABLE `avancementprojet`
   ADD KEY `Cont_user03` (`iduser`);
 
 --
+-- Index pour la table `dateprojet`
+--
+ALTER TABLE `dateprojet`
+  ADD KEY `Cont_21` (`idprojet`);
+
+--
+-- Index pour la table `distruberprojet`
+--
+ALTER TABLE `distruberprojet`
+  ADD KEY `Cont_D01` (`idprojet`),
+  ADD KEY `Cont_D02` (`idadmin`),
+  ADD KEY `Cont_D03` (`iduser`);
+
+--
+-- Index pour la table `financeprojet`
+--
+ALTER TABLE `financeprojet`
+  ADD PRIMARY KEY (`Idfin`),
+  ADD KEY `Cont_14` (`idprojet`);
+
+--
 -- Index pour la table `notification`
 --
 ALTER TABLE `notification`
@@ -191,26 +232,17 @@ ALTER TABLE `projet`
   ADD PRIMARY KEY (`IdProjet`);
 
 --
--- Index pour la table `suiviprojet`
---
-ALTER TABLE `suiviprojet`
-  ADD PRIMARY KEY (`id_sp`),
-  ADD KEY `Cont_10` (`iduser`),
-  ADD KEY `Cont_11` (`idadmin`),
-  ADD KEY `Cont_12` (`idprojet`);
-
---
 -- Index pour la table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`IdUser`),
-  ADD KEY `Cont_Zone01` (`IdZone`);
+  ADD PRIMARY KEY (`IdUser`);
 
 --
 -- Index pour la table `zone`
 --
 ALTER TABLE `zone`
-  ADD PRIMARY KEY (`IdZone`);
+  ADD PRIMARY KEY (`IdZone`),
+  ADD KEY `Cont_20` (`idprojet`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -227,6 +259,11 @@ ALTER TABLE `admin`
 ALTER TABLE `avancementprojet`
   MODIFY `ID_AP` int(10) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT pour la table `financeprojet`
+--
+ALTER TABLE `financeprojet`
+  MODIFY `Idfin` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT pour la table `notification`
 --
 ALTER TABLE `notification`
@@ -236,11 +273,6 @@ ALTER TABLE `notification`
 --
 ALTER TABLE `projet`
   MODIFY `IdProjet` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT pour la table `suiviprojet`
---
-ALTER TABLE `suiviprojet`
-  MODIFY `id_sp` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
@@ -263,6 +295,26 @@ ALTER TABLE `avancementprojet`
   ADD CONSTRAINT `Cont_user03` FOREIGN KEY (`iduser`) REFERENCES `user` (`IdUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Contraintes pour la table `dateprojet`
+--
+ALTER TABLE `dateprojet`
+  ADD CONSTRAINT `Cont_21` FOREIGN KEY (`idprojet`) REFERENCES `projet` (`IdProjet`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `distruberprojet`
+--
+ALTER TABLE `distruberprojet`
+  ADD CONSTRAINT `Cont_D01` FOREIGN KEY (`idprojet`) REFERENCES `projet` (`IdProjet`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Cont_D02` FOREIGN KEY (`idadmin`) REFERENCES `admin` (`IdAdmin`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Cont_D03` FOREIGN KEY (`iduser`) REFERENCES `user` (`IdUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `financeprojet`
+--
+ALTER TABLE `financeprojet`
+  ADD CONSTRAINT `Cont_14` FOREIGN KEY (`idprojet`) REFERENCES `projet` (`IdProjet`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Contraintes pour la table `notification`
 --
 ALTER TABLE `notification`
@@ -271,18 +323,10 @@ ALTER TABLE `notification`
   ADD CONSTRAINT `Cont_04` FOREIGN KEY (`idprojet`) REFERENCES `projet` (`IdProjet`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `suiviprojet`
+-- Contraintes pour la table `zone`
 --
-ALTER TABLE `suiviprojet`
-  ADD CONSTRAINT `Cont_10` FOREIGN KEY (`iduser`) REFERENCES `user` (`IdUser`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Cont_11` FOREIGN KEY (`idadmin`) REFERENCES `admin` (`IdAdmin`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Cont_12` FOREIGN KEY (`idprojet`) REFERENCES `projet` (`IdProjet`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `Cont_Zone01` FOREIGN KEY (`IdZone`) REFERENCES `zone` (`IdZone`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `zone`
+  ADD CONSTRAINT `Cont_20` FOREIGN KEY (`idprojet`) REFERENCES `projet` (`IdProjet`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
