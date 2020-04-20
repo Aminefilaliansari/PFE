@@ -3,6 +3,8 @@ body {
 }
 
 .all {
+
+      width: 65%;
       padding-bottom: 48px;
     padding-top: 48px;
   display: flex;

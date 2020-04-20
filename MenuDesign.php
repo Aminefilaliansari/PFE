@@ -19,10 +19,10 @@
 
 
 
-
+<center>
 <div class="all">
 <div class="lefter" onclick="location.href = 'Ajoute-user.php';">
-  <div class="text">Ajouter un utilisateur</div>
+  <div class="text">Ajouter un user</div>
 </div>
 <div class="left" onclick="location.href = 'Consultation-projet.php';">
   <div class="text">Consultation Projet</div>
@@ -38,7 +38,7 @@
 </div>
 
 
-<div class="righter" onclick="location.href = 'Etat_avancement.php';">
+<div class="righter" onclick="location.href = 'User-projet.php';">
   <div class="text"> Etat d'avancement </div>
 </div>
 
@@ -48,7 +48,7 @@
 </div>
 
 
-
+</center>
 
 
 </body>

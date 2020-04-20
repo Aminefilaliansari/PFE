@@ -46,30 +46,6 @@
 
 
 </div>
-<div class="map__list">
-
-	<ul class="list-group">
-	<li class="list-group-item list-group-item-primary active">Région Grand Casablanca </li>
-	<li class="list-group-item list-group-item-primary">Région Rabat </li>
-	<li class="list-group-item list-group-item-primary">Région Oujda</li>
-	<li class="list-group-item list-group-item-primary">Région Salé </li>
-	<li class="list-group-item list-group-item-primary">Région Tanger</li>
-	<li class="list-group-item list-group-item-primary">Région Marrakech</li>
-	<li class="list-group-item list-group-item-primary">Région El Jadida</li>
-	<li class="list-group-item list-group-item-primary">Région Gharb-Chrarda-Beni Hssen</li>
-	<li class="list-group-item list-group-item-primary">Région Fès-Boulemane</li>
-	<li class="list-group-item list-group-item-primary">Région Meknès-Tafilalet</li>
-	<li class="list-group-item list-group-item-primary">Région Chaouia-Ouardigha</li>
-	<li class="list-group-item list-group-item-primary">Région Laâyoune-Boujdour-Sakia el Hamra</li>
-	<li class="list-group-item list-group-item-primary">Région L'Oriental</li>
-	<li class="list-group-item list-group-item-primary">Région Tadla-Azilal</li>
-	<li class="list-group-item list-group-item-primary">Région Doukhala Abda</li>
-	<li class="list-group-item list-group-item-primary">Région Oued ed Dahab-Lagouira</li>
-	</ul>
-
-
-
-</div>
 
 
 
