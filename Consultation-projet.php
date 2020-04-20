@@ -39,8 +39,7 @@ include "MenuDesign.php";
    <tr>
      <th>ID Projet</th>
      <th>Titre de projet </th>
-     <th>Description</th>
-     <th>Budget</th>
+     <th>Nom d excute</th>
      <th colspan="2">Action</th>
    </tr>
 
@@ -57,15 +56,23 @@ $result = mysqli_query($bdd,$sql);
 
 while ( $row = mysqli_fetch_array($result,MYSQLI_ASSOC) ) {  ?> 
 
+<?php  
+$iduser00=1;
+ $sql0 = "SELECT NomExcute FROM distruberprojet WHERE iduser =".$iduser00;  
+  $result0 = mysqli_query($bdd,$sql0);
+  $row0 = mysqli_fetch_array($result0,MYSQLI_ASSOC);      
+  $NomExcute= $row0["NomExcute"];
+  
+?>
+
+
 <tr>
 <td id="IdProjet"><?php echo $row["IdProjet"];  ?></td>
 <td id="TitreProjet"><?php echo $row["TitreProjet"];  ?></td>
-<td id="Description"><?php echo $row["Description"];  ?></td>
-<td id="Budget"><?php echo $row["Budget"];  ?></td>
+<td id="NomExcute"><?php echo $row0["NomExcute"];  ?> </td>
 <td>
-  <a href="index.php?Modif=<?php echo $row["IdProjet"]; ?>" 
+  <a href="ModifProjet.php?Modif=<?php echo $row["IdProjet"]; ?>" 
   class="btn btn-info" name="<?php echo $row["IdProjet"]; ?>">Modifer</a>
-  <button class="btn btn-danger" onclick="supprojet()">Supprimer</button>
 </td>
 </tr>
 

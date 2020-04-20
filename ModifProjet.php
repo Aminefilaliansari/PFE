@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<title> Ajouter </title>
+		<title> Modifier </title>
 <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="./vendor/bootstrap/css/bootstrap.css">
 <!--===============================================================================================-->
@@ -27,40 +27,55 @@ include "MenuDesign.php";
 
 <?php  
 include ("database.php");
+$page = $_GET['Modif'];
+echo "ID Modif : ".$page;
+$ID_PROJET0=$page;
 ?>
 
 
+
+<?php  
+//LES CHAMPS
+
+  $sql = "SELECT * FROM projet WHERE IdProjet = ".$ID_PROJET0;  
+  $result = mysqli_query($bdd,$sql);
+  $row = mysqli_fetch_array($result,MYSQLI_ASSOC);  
+
+
+?>
+
+
+
+
 <?php
-  
+//MODIF  
 
 
   if (isset($_POST['Validerprojet'])  ) 
 {
 
     //infoprojet
-  $sql = "SELECT IdProjet FROM projet WHERE IdProjet IS NOT NULL ORDER BY IdProjet DESC";  
-  $result = mysqli_query($bdd,$sql);
-  $row = mysqli_fetch_array($result,MYSQLI_ASSOC);      
-  $IdProjet= $row["IdProjet"]+1;
-  echo "ID_PROJET est :".$IdProjet;
 
-  $req_projet = "INSERT INTO `projet`(`IdProjet`, `TitreProjet`, `typeprojet`, `sujetprojet`, `textprojet`, `objectifprojet`, `specialiteprojet`, `champprojet`, `indicenrprojet`, `voteprojet`, `normeExcutprojet`, `indicesNRProjet`, `booleenPDR`, `SourcePDF`) 
-  VALUES ( ".$IdProjet." ,'".$_POST['TitreProjet'] ."','". $_POST['typeprojet'] ."','". $_POST['sujetprojet'] ."','". $_POST['textprojet'] ."','". $_POST['objectifprojet'] ."','".$_POST['specialiteprojet'] ."','".$_POST['champprojet'] ."','".$_POST['indicenrprojet'] ."','". $_POST['voteprojet'] ."','". $_POST['normeExcutprojet'] ."','". $_POST['indicesNRProjet'] ."','". $_POST['booleenPDR'] ."',NULL)"; 
+  $req_projet="UPDATE `projet` SET `TitreProjet`='".$_POST['TitreProjet'] ."',`typeprojet`='". $_POST['typeprojet'] ."',`sujetprojet`='". $_POST['sujetprojet'] ."',`textprojet`='". $_POST['textprojet'] ."',`objectifprojet`='". $_POST['objectifprojet'] ."',`specialiteprojet`='".$_POST['specialiteprojet'] ."',`champprojet`='".$_POST['champprojet'] ."',`indicenrprojet`='".$_POST['indicenrprojet'] ."',`voteprojet`='". $_POST['voteprojet'] ."',`normeExcutprojet`='". $_POST['normeExcutprojet'] ."',`indicesNRProjet`='". $_POST['indicesNRProjet'] ."',`booleenPDR`='". $_POST['booleenPDR'] ."',`SourcePDF`=NULL WHERE IdProjet = ".$ID_PROJET0;
+
+
+echo "Req_projet est :".$req_projet;
   mysqli_query($bdd,$req_projet);
 
 
  
     //DateProjet
-  $req_dateprojet ="INSERT INTO `dateprojet`(`idprojet`, `dateAuthentif`, `dateDistribut`, `dateMark`, `dateExecut`) 
-  VALUES (".$IdProjet.",'".$_POST['dateAuthentif']."','".$_POST['dateDistribut']."','".$_POST['dateMark']."','".$_POST['dateExecut']."')";   
+  $req_dateprojet ="UPDATE `dateprojet` SET `dateAuthentif`='".$_POST['dateAuthentif']."',`dateDistribut`='".$_POST['dateDistribut']."',`dateMark`='".$_POST['dateMark']."',`dateExecut`='".$_POST['dateExecut']."' WHERE IdProjet =".$ID_PROJET0;
+
   echo "Req-dateprojet :".$req_dateprojet;           
   mysqli_query($bdd,$req_dateprojet);
 
 
 
     //ZONE
-  $req_zone = "INSERT INTO `zone`(`idprojet`, `region`, `provaince`, `commune`) 
-  VALUES (".$IdProjet.",'".$_POST['region']."','".$_POST['provaince']."','".$_POST['commune']."')";
+ 
+  $req_zone = "UPDATE `zone` SET `region`='".$_POST['region']."',`provaince`='".$_POST['provaince']."',`commune`='".$_POST['commune']."' WHERE idprojet = ".$ID_PROJET0;
+
   echo "Req-dateprojet :".$req_zone;           
   mysqli_query($bdd,$req_zone);
 
@@ -72,8 +87,9 @@ include ("database.php");
   $Iduser= $row["idUser"];
   echo "ID_USER est :".$Iduser;
             
-  $req_distruberprojet = "INSERT INTO `distruberprojet`(`idprojet`, `idadmin`, `iduser`, `NomExcute`) 
-  VALUES (".$IdProjet.",1,".$Iduser.",'".$_POST['nomdistruber']."')";
+
+  $req_distruberprojet="UPDATE `distruberprojet` SET `idadmin`= 1,`iduser`='".$Iduser."',`NomExcute`='".$_POST['nomdistruber']."' WHERE idprojet =".$ID_PROJET0;
+
   echo "Req-dateprojet :".$req_distruberprojet;           
   mysqli_query($bdd,$req_distruberprojet);         
 
@@ -82,7 +98,7 @@ include ("database.php");
 
 
    echo "<div class='alert alert-success' role='alert'>
-  Le projet est ajouteé avec succèe
+  Le projet est modifier avec succèe
 </div>";
   }
   
@@ -104,63 +120,86 @@ include ("database.php");
   
 <!--  TABLE  projet -->
 
+
+<?php  
+//LES CHAMPS TABLE PROJET
+
+  $sql = "SELECT * FROM projet WHERE IdProjet = ".$ID_PROJET0;  
+  $result = mysqli_query($bdd,$sql);
+  $row = mysqli_fetch_array($result,MYSQLI_ASSOC);  
+
+
+?>
+
            <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="TitreProjet" id="TitreProjet" placeholder="Titre de projet *" required>
+            <input class="input100" type="text" name="TitreProjet" id="TitreProjet" placeholder="Titre de projet *"
+            value="<?php echo $row["TitreProjet"];?>" required>
             <span class="focus-input100"></span>
           </div>
 
           <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="typeprojet" id="typeprojet" placeholder="Type projet *"  required>
+            <input class="input100" type="text" name="typeprojet" id="typeprojet" placeholder="Type projet *"  
+            value="<?php echo $row["typeprojet"];?>" required>
             <span class="focus-input100"></span>
           </div>
 
           <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="sujetprojet" id="sujetprojet" placeholder="Sujet de projet *" required>
+            <input class="input100" type="text" name="sujetprojet" id="sujetprojet" placeholder="Sujet de projet *" 
+            value="<?php echo $row["sujetprojet"];?>" required>
             <span class="focus-input100"></span>
           </div>
 
           <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="textprojet" id="textprojet" placeholder="Text de projet*" required>
+            <input class="input100" type="text" name="textprojet" id="textprojet" placeholder="Text de projet*" 
+            value="<?php echo $row["textprojet"];?>" required>
             <span class="focus-input100"></span>
           </div> 
 
           <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="objectifprojet" id="objectifprojet" placeholder="Objectif du projet*" required>
+            <input class="input100" type="text" name="objectifprojet" id="objectifprojet" placeholder="Objectif du projet*" 
+            value="<?php echo $row["objectifprojet"];?>" required>
             <span class="focus-input100"></span>
           </div> 
 
           <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="specialiteprojet" id="specialiteprojet" placeholder="Specialite projet*" required>
+            <input class="input100" type="text" name="specialiteprojet" id="specialiteprojet" placeholder="Specialite projet*" 
+            value="<?php echo $row["specialiteprojet"];?>" required>
             <span class="focus-input100"></span>
           </div> 
 
           <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="champprojet" id="champprojet" placeholder="champ de projet*" required>
+            <input class="input100" type="text" name="champprojet" id="champprojet" placeholder="champ de projet*" 
+            value="<?php echo $row["champprojet"];?>" required>
             <span class="focus-input100"></span>
           </div> 
 
           <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="indicenrprojet" id="indicenrprojet" placeholder="Indicenrprojet*" required>
+            <input class="input100" type="text" name="indicenrprojet" id="indicenrprojet" placeholder="Indicenrprojet*" 
+            value="<?php echo $row["indicenrprojet"];?>" required>
             <span class="focus-input100"></span>
           </div> 
 
           <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="voteprojet" id="voteprojet" placeholder="Vote projet*" required>
+            <input class="input100" type="text" name="voteprojet" id="voteprojet" placeholder="Vote projet*" 
+            value="<?php echo $row["voteprojet"];?>"required>
             <span class="focus-input100"></span>
           </div> 
 
           <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="normeExcutprojet" id="normeExcutprojet" placeholder="Norme excute projet*" required>
+            <input class="input100" type="text" name="normeExcutprojet" id="normeExcutprojet" placeholder="Norme excute projet*" 
+            value="<?php echo $row["normeExcutprojet"];?>"required>
             <span class="focus-input100"></span>
           </div> 
 
           <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="indicesNRProjet" id="indicesNRProjet" placeholder="Indice NRP *" required>
+            <input class="input100" type="text" name="indicesNRProjet" id="indicesNRProjet" placeholder="Indice NRP *" 
+            value="<?php echo $row["indicesNRProjet"];?>"required>
             <span class="focus-input100"></span>
           </div> 
 
           <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="booleenPDR" id="booleenPDR" placeholder="booleen PDR*" required>
+            <input class="input100" type="text" name="booleenPDR" id="booleenPDR" placeholder="booleen PDR*" 
+            value="<?php echo $row["booleenPDR"];?>" required>
             <span class="focus-input100"></span>
           </div> 
 
@@ -173,10 +212,20 @@ include ("database.php");
 
           <!--  TABLE Date de projet -->
 
+
+          <?php  
+      //LES CHAMPS TABLE dateprojet
+
+  $sql = "SELECT * FROM dateprojet WHERE idprojet = ".$ID_PROJET0;  
+  $result = mysqli_query($bdd,$sql);
+  $row = mysqli_fetch_array($result,MYSQLI_ASSOC); 
+           ?>
+
           <div class="wrap-input100 validate-input" >
           <label>Date d authentification</label>
           <br>
-            <input  type="date" name="dateAuthentif" id="dateAuthentif">
+            <input  type="date" name="dateAuthentif" id="dateAuthentif"
+            value="<?php echo $row["dateAuthentif"];?>" >
             <span class="focus-input100"></span>
           </div>   
 
@@ -184,7 +233,8 @@ include ("database.php");
           <div class="wrap-input100 validate-input" >
           <label>Date Disribution </label>
           <br>
-            <input  type="date" name="dateDistribut" id="dateDistribut">
+            <input  type="date" name="dateDistribut" id="dateDistribut"
+            value="<?php echo $row["dateDistribut"];?>" >
             <span class="focus-input100"></span>
           </div>   
 
@@ -192,14 +242,16 @@ include ("database.php");
           <div class="wrap-input100 validate-input" >
           <label>Date Mark</label>
           <br>
-            <input  type="date" name="dateMark" id="dateMark">
+            <input  type="date" name="dateMark" id="dateMark"
+            value="<?php echo $row["dateMark"];?>" >
             <span class="focus-input100"></span>
           </div>            
 
         <div class="wrap-input100 validate-input" >
           <label>Date execut</label>
           <br>
-            <input  type="date" name="dateExecut" id="dateExecut">
+            <input  type="date" name="dateExecut" id="dateExecut"
+            value="<?php echo $row["dateExecut"];?>" >
             <span class="focus-input100"></span>
           </div>            
 
@@ -208,9 +260,20 @@ include ("database.php");
 
           <!--  TABLE zone  -->
 
+
+
+          <?php  
+      //LES CHAMPS TABLE zone
+
+  $sql = "SELECT * FROM zone WHERE idprojet = ".$ID_PROJET0;  
+  $result = mysqli_query($bdd,$sql);
+  $row = mysqli_fetch_array($result,MYSQLI_ASSOC); 
+           ?>
+
         <span class="label-input100">region</span>
           <div>
             <select class="selection-2" name="region" id="region">
+            <option><?php echo $row["region"];?></option>
               <option>---------------------------</option>
               <option>Tangier-Tétouan-Al Hoceima</option>
               <option>Oriental</option>
@@ -224,13 +287,13 @@ include ("database.php");
               <option>Guelmim-Oued Noun</option>
               <option>Laâyoune-SAkia El Hamra</option>
               <option>Dakhla-Oued Eddahab</option>
-
             </select>
           </div>
 
         <span class="label-input100">Provaince</span>
           <div>
             <select class="selection-2" name="provaince" id="provaince">
+              <option><?php echo $row["provaince"];?></option>
               <option>----------</option>
               <option></option>
             </select>
@@ -239,6 +302,7 @@ include ("database.php");
         <span class="label-input100">Commune</span>
           <div>
             <select class="selection-2" name="commune" id="commune">
+            <option><?php echo $row["commune"];?></option>
               <option>--------</option>
               <option>Rural</option>
               <option>Ubrain</option>
@@ -249,11 +313,20 @@ include ("database.php");
 
 
 <!--  TABLE distruberprojet  -->
+            
+
+            <?php  
+      //LES CHAMPS TABLE distru
+
+  $sql = "SELECT * FROM distruberprojet WHERE idprojet = ".$ID_PROJET0;  
+  $result = mysqli_query($bdd,$sql);
+  $row = mysqli_fetch_array($result,MYSQLI_ASSOC); 
+           ?>
+
      
      <span class="label-input100">Role distruber</span>
           <div>
             <select class="selection-2" name="roledistruber" id="roledistruber">
-            <option></option>
               <option>Admin</option>
               <option>Agence</option>
               <option>Etablissement</option>
@@ -264,7 +337,7 @@ include ("database.php");
           <span class="label-input100">Nom distruber</span>
           <div>
             <select class="selection-2" name="nomdistruber" id="nomdistruber" onchange="">
-            <option></option>
+           <option></option> 
           <option>AgenceX</option>
             </select>
           </div>  
