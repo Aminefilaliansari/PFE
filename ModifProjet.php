@@ -28,7 +28,7 @@ include "MenuDesign.php";
 <?php  
 include ("database.php");
 $page = $_GET['Modif'];
-echo "ID Modif : ".$page;
+//echo "ID Modif : ".$page;
 $ID_PROJET0=$page;
 ?>
 
@@ -59,7 +59,7 @@ $ID_PROJET0=$page;
   $req_projet="UPDATE `projet` SET `TitreProjet`='".$_POST['TitreProjet'] ."',`typeprojet`='". $_POST['typeprojet'] ."',`sujetprojet`='". $_POST['sujetprojet'] ."',`textprojet`='". $_POST['textprojet'] ."',`objectifprojet`='". $_POST['objectifprojet'] ."',`specialiteprojet`='".$_POST['specialiteprojet'] ."',`champprojet`='".$_POST['champprojet'] ."',`indicenrprojet`='".$_POST['indicenrprojet'] ."',`voteprojet`='". $_POST['voteprojet'] ."',`normeExcutprojet`='". $_POST['normeExcutprojet'] ."',`indicesNRProjet`='". $_POST['indicesNRProjet'] ."',`booleenPDR`='". $_POST['booleenPDR'] ."',`SourcePDF`=NULL WHERE IdProjet = ".$ID_PROJET0;
 
 
-echo "Req_projet est :".$req_projet;
+//echo "Req_projet est :".$req_projet;
   mysqli_query($bdd,$req_projet);
 
 
@@ -67,7 +67,7 @@ echo "Req_projet est :".$req_projet;
     //DateProjet
   $req_dateprojet ="UPDATE `dateprojet` SET `dateAuthentif`='".$_POST['dateAuthentif']."',`dateDistribut`='".$_POST['dateDistribut']."',`dateMark`='".$_POST['dateMark']."',`dateExecut`='".$_POST['dateExecut']."' WHERE IdProjet =".$ID_PROJET0;
 
-  echo "Req-dateprojet :".$req_dateprojet;           
+  //echo "Req-dateprojet :".$req_dateprojet;           
   mysqli_query($bdd,$req_dateprojet);
 
 
@@ -76,7 +76,7 @@ echo "Req_projet est :".$req_projet;
  
   $req_zone = "UPDATE `zone` SET `region`='".$_POST['region']."',`provaince`='".$_POST['provaince']."',`commune`='".$_POST['commune']."' WHERE idprojet = ".$ID_PROJET0;
 
-  echo "Req-dateprojet :".$req_zone;           
+  //echo "Req-dateprojet :".$req_zone;           
   mysqli_query($bdd,$req_zone);
 
    
@@ -85,12 +85,12 @@ echo "Req_projet est :".$req_projet;
   $result = mysqli_query($bdd,$sql);
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);      
   $Iduser= $row["idUser"];
-  echo "ID_USER est :".$Iduser;
+  //echo "ID_USER est :".$Iduser;
             
 
   $req_distruberprojet="UPDATE `distruberprojet` SET `idadmin`= 1,`iduser`='".$Iduser."',`NomExcute`='".$_POST['nomdistruber']."' WHERE idprojet =".$ID_PROJET0;
 
-  echo "Req-dateprojet :".$req_distruberprojet;           
+  //echo "Req-dateprojet :".$req_distruberprojet;           
   mysqli_query($bdd,$req_distruberprojet);         
 
 

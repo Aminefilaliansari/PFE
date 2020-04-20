@@ -131,20 +131,20 @@ include "MenuDesign.php";
   $result = mysqli_query($bdd,$sql);
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);      
   $IdProjet= $row["IdProjet"];
-  echo "ID_PROJET est :".$IdProjet;
+  //echo "ID_PROJET est :".$IdProjet;
   
 
   $sql = "SELECT idUser FROM `user` WHERE Nom='".$_POST['nomdistruber']."'";  
   $result = mysqli_query($bdd,$sql);
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);      
   $Iduser= $row["idUser"];
-  echo "ID_USER est :".$Iduser;
+  //echo "ID_USER est :".$Iduser;
             
  
 
   $req_distruberprojet = "INSERT INTO `distruberprojet`(`idprojet`, `idadmin`, `iduser`, `NomExcute`) 
   VALUES (".$IdProjet.",1,".$Iduser.",'".$_POST['nomdistruber']."')";
-  echo "Req-dateprojet :".$req_distruberprojet;           
+  //echo "Req-dateprojet :".$req_distruberprojet;           
   mysqli_query($bdd,$req_distruberprojet);
 
 

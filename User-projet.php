@@ -39,7 +39,6 @@ include "MenuDesign.php";
    <tr>
      <th>ID Projet</th>
      <th>Titre de projet </th>
-     <th>Nom d excute</th>
      <th colspan="2">Action</th>
    </tr>
 
@@ -69,10 +68,9 @@ $iduser00=1;
 <tr>
 <td id="IdProjet"><?php echo $row["IdProjet"];  ?></td>
 <td id="TitreProjet"><?php echo $row["TitreProjet"];  ?></td>
-<td id="NomExcute"><?php echo $row0["NomExcute"];  ?> </td>
 <td>
-  <a href="ModifProjet.php?Modif=<?php echo $row["IdProjet"]; ?>" 
-  class="btn btn-info" name="<?php echo $row["IdProjet"]; ?>">Modifer</a>
+  <a href="Etat_avancement.php?Etat=<?php echo $row["IdProjet"]; ?>" 
+  class="btn btn-warning" name="<?php echo $row["IdProjet"]; ?>">Modifer Etat D'avancement</a>
 </td>
 </tr>
 

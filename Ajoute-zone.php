@@ -106,14 +106,14 @@ include "MenuDesign.php";
   $result = mysqli_query($bdd,$sql);
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);      
   $IdProjet= $row["IdProjet"];
-  echo "ID_PROJET est :".$IdProjet;
+  //echo "ID_PROJET est :".$IdProjet;
        
  
 
   $req_zone = "INSERT INTO `zone`(`idprojet`, `region`, `provaince`, `commune`) 
   VALUES (".$IdProjet.",'".$_POST['region']."','".$_POST['provaince']."','".$_POST['commune']."')";
 
-  echo "Req-dateprojet :".$req_zone;           
+  //echo "Req-dateprojet :".$req_zone;           
   mysqli_query($bdd,$req_zone);
 
 
