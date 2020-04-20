@@ -114,7 +114,7 @@ $ID_PROJET0=$page;
 <form method="POST">
 
  <span class="main100-form-title p-b-26">
-            Ajouter un projet
+            Modification de projet
           </span>
 
   
@@ -122,7 +122,7 @@ $ID_PROJET0=$page;
 
 
 <?php  
-//LES CHAMPS TABLE PROJET
+//LES CHAMPS TABLE PROJE
 
   $sql = "SELECT * FROM projet WHERE IdProjet = ".$ID_PROJET0;  
   $result = mysqli_query($bdd,$sql);

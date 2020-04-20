@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 15 Avril 2020 à 14:06
+-- Généré le :  Lun 20 Avril 2020 à 23:04
 -- Version du serveur :  10.1.21-MariaDB
 -- Version de PHP :  5.6.30
 
@@ -70,6 +70,15 @@ CREATE TABLE `dateprojet` (
   `dateExecut` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `dateprojet`
+--
+
+INSERT INTO `dateprojet` (`idprojet`, `dateAuthentif`, `dateDistribut`, `dateMark`, `dateExecut`) VALUES
+(11, '2020-01-01', '2020-02-02', '2020-04-03', '2020-04-04'),
+(12, '2020-01-01', '2020-01-01', '2020-01-01', '2020-01-01'),
+(10, '2020-04-01', '2020-04-02', '2020-04-03', '2020-04-04');
+
 -- --------------------------------------------------------
 
 --
@@ -82,6 +91,16 @@ CREATE TABLE `distruberprojet` (
   `iduser` int(10) DEFAULT NULL,
   `NomExcute` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `distruberprojet`
+--
+
+INSERT INTO `distruberprojet` (`idprojet`, `idadmin`, `iduser`, `NomExcute`) VALUES
+(11, 1, 1, 'AgenceX'),
+(11, 1, 1, 'AgenceX'),
+(11, 1, 1, 'AgenceX'),
+(12, 1, 1, 'AgenceX');
 
 -- --------------------------------------------------------
 
@@ -145,7 +164,10 @@ CREATE TABLE `projet` (
 INSERT INTO `projet` (`IdProjet`, `TitreProjet`, `typeprojet`, `sujetprojet`, `textprojet`, `objectifprojet`, `specialiteprojet`, `champprojet`, `indicenrprojet`, `voteprojet`, `normeExcutprojet`, `indicesNRProjet`, `booleenPDR`, `SourcePDF`) VALUES
 (1, 'Projet 01', '', '', '', '', '', '', 0, 0, '', 0, 0, ''),
 (2, 'Projet 02', '', '', '', '', '', '', 0, 0, '', 0, 0, ''),
-(6, 'Titre test 3', '', '', '', '', '', '', 0, 0, '', 0, 0, '');
+(6, 'Titre test 3', '', '', '', '', '', '', 0, 0, '', 0, 0, ''),
+(10, 'Titre 10', 'type10', 'sujet100', 'text10', 'objec10', 'special10', 'champ10', 101010101, 10, 'nom', 10, 1, NULL),
+(11, 'Titre 11', 'type11', 'sujet11', 'text11', 'objectif11', 'special11', 'cham11', 111111, 1010101, 'norme11', 111111, 1, NULL),
+(12, 'titre15', 'type15', 'sujet15', 'txt15', 'obj15', 'spe15', 'champ15', 151515, 15, 'nome15', 15151500, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -163,6 +185,16 @@ CREATE TABLE `user` (
   `Adresse` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `user`
+--
+
+INSERT INTO `user` (`IdUser`, `Role`, `Nom`, `Tel`, `Email`, `Password`, `Adresse`) VALUES
+(1, 'Agence', 'AgenceX', '', '', '', NULL),
+(2, 'Agence', 'AgenceY', '', '', '', NULL),
+(3, 'Etablissement', 'EtablissementX', '', '', '', NULL),
+(4, 'Etablissement', 'EtablissementY', '', '', '', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -176,6 +208,14 @@ CREATE TABLE `zone` (
   `provaince` varchar(100) DEFAULT NULL,
   `commune` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `zone`
+--
+
+INSERT INTO `zone` (`IdZone`, `idprojet`, `region`, `provaince`, `commune`) VALUES
+(1, 11, 'Region Casa', 'Provaince Casa', 'Commune Casa'),
+(2, 12, 'Region Casa', 'Provaince Casa', 'Commune Casa');
 
 --
 -- Index pour les tables exportées
@@ -272,17 +312,17 @@ ALTER TABLE `notification`
 -- AUTO_INCREMENT pour la table `projet`
 --
 ALTER TABLE `projet`
-  MODIFY `IdProjet` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `IdProjet` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `IdUser` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `IdUser` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `zone`
 --
 ALTER TABLE `zone`
-  MODIFY `IdZone` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IdZone` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Contraintes pour les tables exportées
 --
