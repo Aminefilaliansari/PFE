@@ -35,7 +35,7 @@ include "MenuDesign.php";
 
   <div class="limiter">
     <div class="container-main100">
-      <div class="body-main100">
+      <div class="wrap-main-body">
           <span class="main100-form-title p-b-26">
            ACCUEIL
           </span>
@@ -61,7 +61,7 @@ include "Map.php";
 
 <div class="chart_accueil" >                 
 <?php 
-include "chart.php";
+include "Chart.php";
  ?>
 </div>
      
