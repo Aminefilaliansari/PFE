@@ -370,7 +370,7 @@ include ("database.php");
           </div>          
 
 
-           <div class="container-main-form-btn" style=" padding-top: 60px;">
+           <div class="container-main-form-btn" style="     display: none; padding-top: 60px;">
             <div class="wrap-main100-form-btn" style="width: 30%;float: right;">
               <div class="main100-form-bgbtn"></div>
               <button type="button" class="main100-form-btn" name="">
@@ -457,7 +457,7 @@ include ("database.php");
 
 
 
-           <div class="container-main-form-btn" style=" padding-top: 60px;">
+           <div class="container-main-form-btn" style="     display: none; padding-top: 60px;">
             <div class="wrap-main100-form-btn" style="width: 30%;float: right;">
               <div class="main100-form-bgbtn"></div>
               <button type="button" class="main100-form-btn" name="">
@@ -542,7 +542,7 @@ include ("database.php");
 
 
 
-          <div class="container-main-form-btn" style=" padding-top: 60px;">
+          <div class="container-main-form-btn" style="     display: none; padding-top: 60px;">
             <div class="wrap-main100-form-btn" style="width: 30%;float: right;">
               <div class="main100-form-bgbtn"></div>
               <button type="button" class="main100-form-btn" name="">
@@ -588,7 +588,7 @@ include ("database.php");
 
 
 
-           <div class="container-main-form-btn" style=" padding-top: 60px;">
+           <div class="container-main-form-btn" style="   display: none; padding-top: 60px;">
             <div class="wrap-main100-form-btn" style="width: 30%;float: right;">
               <div class="main100-form-bgbtn"></div>
               <button type="button" class="main100-form-btn" name="">
