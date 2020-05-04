@@ -12,7 +12,7 @@
 
 
 
-<canvas id="myChart" height="500"></canvas>
+<canvas id="myChart" width="500" height="400"></canvas>
 <script>
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
@@ -20,7 +20,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
-            label: '# of Votes',
+            label: '',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -52,6 +52,19 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </body>
