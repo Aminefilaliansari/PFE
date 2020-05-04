@@ -37,6 +37,9 @@ include "MenuDesign.php";
             Ajouter un projet
           </span>
 
+
+
+<NAV></NAV>
   
 <!--  TABLE  projet -->
 
@@ -65,10 +68,19 @@ include "MenuDesign.php";
             <span class="focus-input100"></span>
           </div> 
 
-          <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="specialiteprojet" id="specialiteprojet" placeholder="Specialite projet*" required>
-            <span class="focus-input100"></span>
-          </div> 
+          
+          
+            <div class="row  justify-content-center" >
+           <div class="col-md-3" style="text-align: center;margin-top: 9px;">
+           <label>Specialite projet : </label></div>
+           <div class="col-md-8">
+            <select class="form-control" name="specialiteprojet" id="specialiteprojet" >
+              <option>Personnelle</option>
+              <option>Commune</option>
+            </select>
+          </div>
+         </div>
+
 
           <div class="wrap-input100 validate-input" >
             <input class="input100" type="text" name="champprojet" id="champprojet" placeholder="champ de projet*" required>
@@ -95,10 +107,18 @@ include "MenuDesign.php";
             <span class="focus-input100"></span>
           </div> 
 
-          <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="booleenPDR" id="booleenPDR" placeholder="booleen PDR*" required>
-            <span class="focus-input100"></span>
-          </div> 
+          
+            <div class="row  justify-content-center" >
+           <div class="col-md-3" style="text-align: center;margin-top: 9px;">
+           <label>Booleen PDR : </label></div>
+           <div class="col-md-8">
+            <select class="form-control" name="booleenPDR" id="booleenPDR">
+              <option value="1">OUI</option>
+              <option value="0">NON</option>
+            </select>
+          </div>
+         </div
+
 
           <div class="wrap-input100 validate-input" >
             <input  type="file" name="SourcePDF" id="SourcePDF" value="SOurce PDF">

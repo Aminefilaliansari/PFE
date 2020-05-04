@@ -4,7 +4,7 @@ body {
 
 .all {
 
-      width: 60%;
+      width: 50%;
       padding-bottom: 48px;
     padding-top: 48px;
   display: flex;
@@ -75,6 +75,7 @@ body {
   color: #fff;
   text-shadow: 0 0 5px rgba(100, 100, 255, 0.6);
   color: black;
+  font-size: 14px;
 }
 
 .lefter {

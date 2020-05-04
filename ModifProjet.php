@@ -74,7 +74,7 @@ $ID_PROJET0=$page;
 
     //ZONE
  
-  $req_zone = "UPDATE `zone` SET `region`='".$_POST['region']."',`provaince`='".$_POST['provaince']."',`commune`='".$_POST['commune']."' WHERE idprojet = ".$ID_PROJET0;
+  $req_zone = "UPDATE `zone` SET `region`='".$_POST['region']."',`provaince`='".$_POST['provaince']."',`commune`='".$_POST['commune']."', `Typecommune`='".$_POST['Typecommune']."' WHERE idprojet = ".$ID_PROJET0;
 
   //echo "Req-dateprojet :".$req_zone;           
   mysqli_query($bdd,$req_zone);
@@ -167,11 +167,20 @@ $ID_PROJET0=$page;
             <span class="focus-input100"></span>
           </div> 
 
-          <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="champprojet" id="champprojet" placeholder="champ de projet*" 
-            value="<?php echo $row["champprojet"];?>" required>
-            <span class="focus-input100"></span>
-          </div> 
+
+             <div class="row  justify-content-center" >
+           <div class="col-md-3" style="text-align: center;margin-top: 9px;">
+           <label>Champ de projet : </label></div>
+           <div class="col-md-8">
+            <select class="form-control"  name="champprojet" id="champprojet">
+            <option><?php echo $row["champprojet"];?></option>
+              <option>Secteur sociale</option>
+              <option>Secteur economique</option>
+              <option>Secteur sanitaire</option>
+              <option>Autre</option>
+            </select>
+          </div>
+         </div>
 
           <div class="wrap-input100 validate-input" >
             <input class="input100" type="text" name="indicenrprojet" id="indicenrprojet" placeholder="Indicenrprojet*" 
@@ -304,12 +313,23 @@ $ID_PROJET0=$page;
             <select class="selection-2" name="commune" id="commune">
             <option><?php echo $row["commune"];?></option>
               <option>--------</option>
-              <option>Rural</option>
-              <option>Ubrain</option>
+              <option></option>
+              <option></option>
             </select>
           </div> 
 
 
+          <div class="row  justify-content-center" >
+           <div class="col-md-3" style="text-align: center;margin-top: 9px;">
+           <label>Type Commune : </label></div>
+           <div class="col-md-8">
+            <select class="form-control" name="Typecommune" id="Typecommune">
+              <option>--------</option>
+              <option>Rural</option>
+              <option>Ubrain</option>
+            </select>
+          </div> 
+         </div> 
 
 
 <!--  TABLE distruberprojet  -->

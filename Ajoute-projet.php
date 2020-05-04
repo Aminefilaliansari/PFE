@@ -44,8 +44,8 @@ include ("database.php");
   $IdProjet= $row["IdProjet"]+1;
   //echo "ID_PROJET est :".$IdProjet;
 
-  $req_projet = "INSERT INTO `projet`(`IdProjet`, `TitreProjet`, `typeprojet`, `sujetprojet`, `textprojet`, `objectifprojet`, `specialiteprojet`, `champprojet`, `indicenrprojet`, `voteprojet`, `normeExcutprojet`, `indicesNRProjet`, `booleenPDR`, `SourcePDF`) 
-  VALUES ( ".$IdProjet." ,'".$_POST['TitreProjet'] ."','". $_POST['typeprojet'] ."','". $_POST['sujetprojet'] ."','". $_POST['textprojet'] ."','". $_POST['objectifprojet'] ."','".$_POST['specialiteprojet'] ."','".$_POST['champprojet'] ."','".$_POST['indicenrprojet'] ."','". $_POST['voteprojet'] ."','". $_POST['normeExcutprojet'] ."','". $_POST['indicesNRProjet'] ."','". $_POST['booleenPDR'] ."',NULL)"; 
+  $req_projet = "INSERT INTO `projet`(`IdProjet`, `TitreProjet`, `typeprojet`, `sujetprojet`, `textprojet`, `objectifprojet`, `specialiteprojet`, `champprojet`, `indicenrprojet`, `voteprojet`, `normeExcutprojet`, `indicesNRProjet`, `booleenPDR`, `SourcePDF`, `SourcePDF2`) 
+  VALUES ( ".$IdProjet." ,'".$_POST['TitreProjet'] ."','". $_POST['typeprojet'] ."','". $_POST['sujetprojet'] ."','". $_POST['textprojet'] ."','". $_POST['objectifprojet'] ."','".$_POST['specialiteprojet'] ."','".$_POST['champprojet'] ."','".$_POST['indicenrprojet'] ."','". $_POST['voteprojet'] ."','". $_POST['normeExcutprojet'] ."','". $_POST['indicesNRProjet'] ."','". $_POST['booleenPDR'] ."',NULL,NULL)"; 
   mysqli_query($bdd,$req_projet);
 
 
@@ -59,8 +59,8 @@ include ("database.php");
 
 
     //ZONE
-  $req_zone = "INSERT INTO `zone`(`idprojet`, `region`, `provaince`, `commune`) 
-  VALUES (".$IdProjet.",'".$_POST['region']."','".$_POST['provaince']."','".$_POST['commune']."')";
+  $req_zone = "INSERT INTO `zone`(`idprojet`, `region`, `provaince`, `commune`, `Typecommune`) 
+  VALUES (".$IdProjet.",'".$_POST['region']."','".$_POST['provaince']."','".$_POST['commune']."','".$_POST['Typecommune']."')";
   //echo "Req-dateprojet :".$req_zone;           
   mysqli_query($bdd,$req_zone);
 
@@ -69,7 +69,11 @@ include ("database.php");
   $sql = "SELECT idUser FROM `user` WHERE Nom='".$_POST['nomdistruber']."'";  
   $result = mysqli_query($bdd,$sql);
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);      
-  $Iduser= $row["idUser"];
+  if ($_POST['roledistruber']=="Admin") {
+          $Iduser= 'NULL';
+  }
+  else{
+  $Iduser= $row["idUser"];}
   //echo "ID_USER est :".$Iduser;
             
   $req_distruberprojet = "INSERT INTO `distruberprojet`(`idprojet`, `idadmin`, `iduser`, `NomExcute`) 
@@ -78,7 +82,18 @@ include ("database.php");
   mysqli_query($bdd,$req_distruberprojet);         
 
 
+    //Table Fin
 
+  $req_fin = "INSERT INTO `financeprojet`(`idprojet`, `Contrib_Etat`, `Contrib_Etabli`, `NbrEtab`, `durAdmin`, `durEtabli`)
+   VALUES (".$IdProjet.",'". $_POST['Contrib_Etat'] ."','". $_POST['Contrib_Etabli'] ."','". $_POST['NbrEtab'] ."','". $_POST['durAdmin'] ."','". $_POST['durEtabli'] ."')";
+  //echo "Req-fin :".$req_fin;           
+  mysqli_query($bdd,$req_fin);
+
+  //Avancementprojet
+    $req_Avnc = "INSERT INTO `avancementprojet`(`idprojet`, `iduser`, `Label`, `Etat`, `Commentaire`) 
+    VALUES (".$IdProjet.",".$Iduser.",NULL,NULL,NULL)";
+  //echo "Req-Avnc :".$req_Avnc;           
+  mysqli_query($bdd,$req_Avnc);
 
 
    echo "<div class='alert alert-success' role='alert'>
@@ -105,8 +120,35 @@ include ("database.php");
 <!--  TABLE  projet -->
 
 
+<ul class="nav nav-tabs" style="margin-bottom: 70px;">
+            <li class="nav-item">
+              <a href="#infoprojet" class="nav-link active" role="tab" data-toggle="tab">Information projet</a>
+            </li>
 
-           <div class="row  justify-content-center" >
+            <li class="nav-item">
+              <a href="#dateprojet" class="nav-link" role="tab" data-toggle="tab">Date projet </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#zone" class="nav-link" role="tab" data-toggle="tab">La zone</a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#distribuer" class="nav-link" role="tab" data-toggle="tab">Distribuer</a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#financement" class="nav-link" role="tab" data-toggle="tab">Financement</a>
+            </li>
+
+            </ul>
+  
+  <div class="tab-content">
+
+
+          <div role="tabpanel" class="tab-pane active" id="infoprojet">
+
+           <div class="row  justify-content-center p-b-15" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Titre projet : </label></div>
            <div class="col-md-8">
@@ -117,7 +159,7 @@ include ("database.php");
           </div>  
           </div>
 
-           <div class="row  justify-content-center" >
+           <div class="row  justify-content-center p-b-15" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Type de projet : </label></div>
            <div class="col-md-8">
@@ -131,7 +173,7 @@ include ("database.php");
           
 
 
-           <div class="row  justify-content-center" >
+           <div class="row  justify-content-center p-b-15" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Sujet de projet : </label></div>
            <div class="col-md-8">
@@ -148,15 +190,12 @@ include ("database.php");
           
 
 
-           <div class="row  justify-content-center" >
+           <div class="row  justify-content-center p-b-15" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label> Text de projet : </label></div>
            <div class="col-md-8">
-              <div class="wrap-input100 validate-input">
             <textarea class="form-control" type="text" name="textprojet" id="textprojet" placeholder="Text de projet">
-            </textarea>
-              <span class="focus-input100"></span>
-          </div>
+            </textarea>              
           </div>
           </div>
 
@@ -166,7 +205,7 @@ include ("database.php");
           
 
 
-           <div class="row  justify-content-center" >
+           <div class="row  justify-content-center p-b-15" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Objectif du projet : </label></div>
            <div class="col-md-8">
@@ -183,33 +222,36 @@ include ("database.php");
           
 
 
-           <div class="row  justify-content-center" >
+
+          
+          
+            <div class="row  justify-content-center p-b-40" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Specialite projet : </label></div>
            <div class="col-md-8">
-              <div class="wrap-input100 validate-input">
-            <input class="input100" type="text" name="specialiteprojet" id="specialiteprojet" placeholder="Specialite projet*" required>
-              <span class="focus-input100"></span>
+            <select class="form-control" name="specialiteprojet" id="specialiteprojet" >
+              <option>Personnelle</option>
+              <option>Commune</option>
+            </select>
           </div>
-          </div>
-          </div>
-
-          
- 
-
-          
+         </div>
 
 
-           <div class="row  justify-content-center" >
+
+  
+
+              <div class="row  justify-content-center p-b-40" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Champ de projet : </label></div>
            <div class="col-md-8">
-              <div class="wrap-input100 validate-input">
-            <input class="input100" type="text" name="champprojet" id="champprojet" placeholder="champ de projet*" required>
-              <span class="focus-input100"></span>
+            <select class="form-control"  name="champprojet" id="champprojet">
+              <option>Secteur sociale</option>
+              <option>Secteur economique</option>
+              <option>Secteur sanitaire</option>
+              <option>Autre</option>
+            </select>
           </div>
-          </div>
-          </div>
+         </div>
 
           
  
@@ -217,7 +259,7 @@ include ("database.php");
           
 
 
-           <div class="row  justify-content-center" >
+           <div class="row  justify-content-center p-b-15" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Indicenrprojet ( number ) : </label></div>
            <div class="col-md-8">
@@ -234,7 +276,7 @@ include ("database.php");
           
 
 
-           <div class="row  justify-content-center" >
+           <div class="row  justify-content-center p-b-15" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Vote projet ( number ) : </label></div>
            <div class="col-md-8">
@@ -251,7 +293,7 @@ include ("database.php");
           
 
 
-           <div class="row  justify-content-center" >
+           <div class="row  justify-content-center p-b-15" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Norme excute projet : </label></div>
            <div class="col-md-8">
@@ -268,7 +310,7 @@ include ("database.php");
           
 
 
-           <div class="row  justify-content-center" >
+           <div class="row  justify-content-center p-b-15" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Indice NRP (num): </label></div>
            <div class="col-md-8">
@@ -285,16 +327,19 @@ include ("database.php");
           
 
 
-           <div class="row  justify-content-center" >
+
+
+
+            <div class="row  justify-content-center p-b-40" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
-           <label>Booleen PDR ( 0 ou 1) : </label></div>
+           <label>Booleen PDR : </label></div>
            <div class="col-md-8">
-              <div class="wrap-input100 validate-input">
-            <input class="input100" type="number" name="booleenPDR" id="booleenPDR" placeholder="booleen PDR*" required>
-              <span class="focus-input100"></span>
+            <select class="form-control" name="booleenPDR" id="booleenPDR">
+              <option value="1">OUI</option>
+              <option value="0">NON</option>
+            </select>
           </div>
-          </div>
-          </div>
+         </div>
 
           
  
@@ -302,7 +347,7 @@ include ("database.php");
           
 
 
-           <div class="row  justify-content-center" >
+           <div class="row  justify-content-center p-b-30" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Source PDF : </label></div>
            <div class="col-md-8">
@@ -313,17 +358,36 @@ include ("database.php");
           </div>
           </div>
 
-          
+          <div class="row  justify-content-center p-b-15" >
+           <div class="col-md-3" style="text-align: center;margin-top: 9px;">
+           <label>Source PDF 2 : </label></div>
+           <div class="col-md-8">
+              <div class="wrap-input100 validate-input">
+            <input  type="file"  class="form-control-file" name="SourcePDF2" id="SourcePDF2" value="Source PDF2">
+              <span class="focus-input100"></span>
+          </div>
+          </div>
+          </div>          
+
+
+           <div class="container-main-form-btn" style=" padding-top: 60px;">
+            <div class="wrap-main100-form-btn" style="width: 30%;float: right;">
+              <div class="main100-form-bgbtn"></div>
+              <button type="button" class="main100-form-btn" name="">
+                SUIVANT
+              </button>
+            </div>
+          </div>
  
 
 
-
+</div>
           <!--  TABLE Date de projet -->
-
+<div role="tabpanel" class="tab-pane" id="dateprojet">
           
 
 
-           <div class="row  justify-content-center" >
+           <div class="row  justify-content-center p-b-15" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Date authentification : </label></div>
            <div class="col-md-8">
@@ -342,7 +406,7 @@ include ("database.php");
           
 
 
-           <div class="row  justify-content-center" >
+           <div class="row  justify-content-center p-b-15" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Date Distribut : </label></div>
            <div class="col-md-8">
@@ -361,7 +425,7 @@ include ("database.php");
           
 
 
-           <div class="row  justify-content-center" >
+           <div class="row  justify-content-center p-b-15" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Date Mark : </label></div>
            <div class="col-md-8">
@@ -379,7 +443,7 @@ include ("database.php");
         
 
 
-           <div class="row  justify-content-center" >
+           <div class="row  justify-content-center p-b-15" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Date Execute : </label></div>
            <div class="col-md-8">
@@ -391,20 +455,33 @@ include ("database.php");
           </div>
           </div>
 
+
+
+           <div class="container-main-form-btn" style=" padding-top: 60px;">
+            <div class="wrap-main100-form-btn" style="width: 30%;float: right;">
+              <div class="main100-form-bgbtn"></div>
+              <button type="button" class="main100-form-btn" name="">
+                SUIVANT
+              </button>
+            </div>
+          </div>
+
           
             
 
-
+</div>
 
 
           <!--  TABLE zone  -->
 
-        <div class="row  justify-content-center" >
+<div role="tabpanel" class="tab-pane" id="zone">          
+
+        <div class="row  justify-content-center p-b-15" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Région : </label></div>
            <div class="col-md-8">
             <select class="form-control" name="region" id="region">
-              <option>---------------------------</option>
+              <option value="NULL">---------------------------</option>
               <option>Tangier-Tétouan-Al Hoceima</option>
               <option>Oriental</option>
               <option>Fez-Meknés</option>
@@ -423,12 +500,12 @@ include ("database.php");
           </div>
           
 
-        <div class="row  justify-content-center" >
+        <div class="row  justify-content-center p-b-15" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Provaince : </label></div>
            <div class="col-md-8">
             <select class="form-control" name="provaince" id="provaince">
-              <option>----------</option>
+              <option value="NULL">----------</option>
               <option></option>
             </select>
           </div>
@@ -437,12 +514,25 @@ include ("database.php");
 
 
  
-        <div class="row  justify-content-center" >
+        <div class="row  justify-content-center p-b-15" >
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Commune : </label></div>
            <div class="col-md-8">
             <select class="form-control" name="commune" id="commune">
-              <option>--------</option>
+              <option value="NULL">--------</option>
+              <option></option>
+              <option></option>
+            </select>
+          </div> 
+         </div> 
+
+
+         <div class="row  justify-content-center p-b-15" >
+           <div class="col-md-3" style="text-align: center;margin-top: 9px;">
+           <label>Type Commune : </label></div>
+           <div class="col-md-8">
+            <select class="form-control" name="Typecommune" id="Typecommune">
+              <option value="NULL">--------</option>
               <option>Rural</option>
               <option>Ubrain</option>
             </select>
@@ -452,15 +542,29 @@ include ("database.php");
 
 
 
+          <div class="container-main-form-btn" style=" padding-top: 60px;">
+            <div class="wrap-main100-form-btn" style="width: 30%;float: right;">
+              <div class="main100-form-bgbtn"></div>
+              <button type="button" class="main100-form-btn" name="">
+                SUIVANT
+              </button>
+            </div>
+          </div>
+
+
+</div>
+
 <!--  TABLE distruberprojet  -->
+
+
+<div role="tabpanel" class="tab-pane" id="distribuer">
      
-     <div class="row  justify-content-center" >
+     <div class="row  justify-content-center p-b-15" >
            <div class="col-md-2" style="text-align: center;margin-top: 9px;">
            <label>Role Distruber : </label></div>
            <div class="col-md-3">
             <select class="form-control" name="roledistruber" id="roledistruber">
-            <option></option>
-              <option>Admin</option>
+              <option value="Admin">Admin</option>
               <option>Agence</option>
               <option>Etablissement</option>
             </select>
@@ -481,15 +585,94 @@ include ("database.php");
           </div> 
           </div> 
 
+
+
+
+           <div class="container-main-form-btn" style=" padding-top: 60px;">
+            <div class="wrap-main100-form-btn" style="width: 30%;float: right;">
+              <div class="main100-form-bgbtn"></div>
+              <button type="button" class="main100-form-btn" name="">
+                SUIVANT
+              </button>
+            </div>
+          </div>
+
+
+</div>
    
+<!--  TABLE financeprojet  -->
 
-         
 
 
-      
-        
+<div role="tabpanel" class="tab-pane " id="financement"> 
 
-		<div class="container-main-form-btn" style=" padding-top: 60px;">
+
+ <div class="row  justify-content-center p-b-15" >
+           <div class="col-md-3" style="text-align: center;">
+           <label>Contribution Etat : </label></div>
+           <div class="col-md-8">
+              <div class="wrap-input100 validate-input">
+            <input class="input100" type="number" name="Contrib_Etat" id="Contrib_Etat" placeholder="Contribution Etat *" required>
+              <span class="focus-input100"></span>
+          </div>
+          </div>
+          </div>
+
+
+           <div class="row  justify-content-center p-b-15" >
+           <div class="col-md-3" style="text-align: center;">
+           <label>Contribution Etablissement : </label></div>
+           <div class="col-md-8">
+              <div class="wrap-input100 validate-input">
+            <input class="input100" type="number" name="Contrib_Etabli" id="Contrib_Etabli" placeholder="Contribution Etablissement *" required>
+              <span class="focus-input100"></span>
+          </div>
+          </div>
+          </div>
+
+
+
+
+           <div class="row  justify-content-center p-b-15" >
+           <div class="col-md-3" style="text-align: center;margin-top: 9px;">
+           <label>Nbr Etablissement: </label></div>
+           <div class="col-md-8">
+              <div class="wrap-input100 validate-input">
+            <input class="input100" type="number" name="NbrEtab" id="NbrEtab" placeholder="Nbr Etablissement *" required>
+              <span class="focus-input100"></span>
+          </div>
+          </div>
+          </div>
+
+
+
+
+           <div class="row  justify-content-center p-b-15" >
+           <div class="col-md-3" style="text-align: center;margin-top: 9px;">
+           <label>DurAdmin : </label></div>
+           <div class="col-md-8">
+              <div class="wrap-input100 validate-input">
+            <input class="input100" type="number" name="durAdmin" id="durAdmin" placeholder="DurAdmin *" required>
+              <span class="focus-input100"></span>
+          </div>
+          </div>
+          </div>
+
+
+
+           <div class="row  justify-content-center p-b-15" >
+           <div class="col-md-3" style="text-align: center;margin-top: 9px;">
+           <label>DurEtablissement : </label></div>
+           <div class="col-md-8">
+              <div class="wrap-input100 validate-input">
+            <input class="input100" type="number" name="durEtabli" id="durEtabli" placeholder="DurEtablissement *" required>
+              <span class="focus-input100"></span>
+          </div>
+          </div>
+          </div>
+
+
+              <div class="container-main-form-btn" style=" padding-top: 60px;">
             <div class="wrap-main100-form-btn">
               <div class="main100-form-bgbtn"></div>
               <button type="submit" class="main100-form-btn" name="Validerprojet">
@@ -497,6 +680,17 @@ include ("database.php");
               </button>
             </div>
           </div>
+
+
+
+</div>
+         
+</div>
+
+      
+        
+
+
 
 
 

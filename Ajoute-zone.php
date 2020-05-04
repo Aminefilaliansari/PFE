@@ -41,26 +41,72 @@ include "MenuDesign.php";
   
 <!--  TABLE zone  -->
 
-<span class="label-input100">region</span>
+
+
+
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <br />
+          
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a href="#home" class="nav-link active" role="tab" data-toggle="tab">Home</a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#profile" class="nav-link" role="tab" data-toggle="tab">About Us</a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#about" class="nav-link" role="tab" data-toggle="tab">Contact Us</a>
+            </li>
+
+          </ul>
+
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
+
+                <span class="label-input100">region</span>
           <div>
             <select class="selection-2" name="region" id="region">
               <option>Region Casa</option>
             </select>
           </div>
 
+
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="profile">
+              
+
+
+              
 <span class="label-input100">Provaince</span>
           <div>
             <select class="selection-2" name="provaince" id="provaince">
               <option>Provaince Casa</option>
             </select>
           </div>
- 
- <span class="label-input100">Commune</span>
+
+
+
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="about">
+              
+
+               <span class="label-input100">Commune</span>
           <div>
             <select class="selection-2" name="commune" id="commune">
               <option>Commune Casa</option>
             </select>
           </div> 
+
+            </div>
+          </div>
+        </div>
+
+
+
+
+ 
 
 
 
@@ -106,14 +152,14 @@ include "MenuDesign.php";
   $result = mysqli_query($bdd,$sql);
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);      
   $IdProjet= $row["IdProjet"];
-  //echo "ID_PROJET est :".$IdProjet;
+  echo "ID_PROJET est :".$IdProjet;
        
  
 
   $req_zone = "INSERT INTO `zone`(`idprojet`, `region`, `provaince`, `commune`) 
   VALUES (".$IdProjet.",'".$_POST['region']."','".$_POST['provaince']."','".$_POST['commune']."')";
 
-  //echo "Req-dateprojet :".$req_zone;           
+  echo "Req-dateprojet :".$req_zone;           
   mysqli_query($bdd,$req_zone);
 
 

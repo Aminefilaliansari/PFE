@@ -11,51 +11,14 @@
 
 
 
-<DIV>
-<span class="main100-form-title p-b-26" style="padding-top: 706px;">
-            Statistique
-</span>
-</DIV>
 
-<div class="chart-container" style="position: relative; height:40vh; width:80vw">
-<canvas id="myChart"></canvas>
-</div>
-
-<script type="text/javascript">
-	
-	var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
-
-    // The data for our dataset
-    data: {
-        labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet'],
-        datasets: [{
-            label: 'Chiffre d affaire',
-            backgroundColor: 'rgb(166, 75, 244)',
-            borderColor: 'rgb(166, 75, 244)',
-            data: [0, 10, 5, 2, 20, 30, 45]
-        }]
-    },
-
-    // Configuration options go here
-    options: {}
-});
-
-</script>
-
-
-
-
-
-
+<canvas id="myChart" height="500"></canvas>
 <script>
-var ctx = document.getElementById('myChart02').getContext('2d');
+var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Casablanca', 'Rabat', 'Tanger', 'Salé', 'Marrakech', 'Oujda'],
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
             label: '# of Votes',
             data: [12, 19, 3, 5, 2, 3],
@@ -89,7 +52,6 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
-
 
 
 </body>

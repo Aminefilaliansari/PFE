@@ -11,7 +11,7 @@
 	<title></title>
 </head>
 <body>
- <div class="map" id="map" >
+
  	
 <div class="map__image">
 	
@@ -50,6 +50,6 @@
 
 
 <script src="./js/app.js"></script>
- </div>
+
 </body>
 </html>
