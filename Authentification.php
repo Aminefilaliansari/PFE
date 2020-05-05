@@ -92,7 +92,7 @@ if( isset($_POST['email']) && isset($_POST['pass']) && isset($_POST['submit']) &
 
 <!-- Creation du Formualire -->
 
-<div>
+<div style="margin-top: 50%;">
 <form method="POST">
 
 
