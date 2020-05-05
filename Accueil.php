@@ -45,7 +45,7 @@ include "MenuDesign.php";
 <div class="row">
 
 
-<div class="col-md-6 col-xs-12">
+<div class="col-md-6 col-xs-12 col-sm-12">
 
 <!--====   MAP    ==========-->
 <div class="map_accueil" >                 
@@ -57,7 +57,7 @@ include "Map.php";
 </div>
 
 
-<div class="col-md-6 col-xs-12" >
+<div class="col-md-6 col-xs-12 col-sm-12" >
 
 <div class="chart_accueil" >                 
 <?php 

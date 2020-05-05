@@ -55,6 +55,11 @@ a {
   -moz-transition: all 0.4s;
 }
 
+
+header{
+  background: #f2f2f2
+}
+
 a:focus {
 	outline: none !important;
 }

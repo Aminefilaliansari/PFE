@@ -2,7 +2,7 @@
 <?php include('database.php') ?>
 <html>
 <head>
-		<title> Inscription d'un admin </title>
+		<title> Suivi du projet </title>
 <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="./vendor/bootstrap/css/bootstrap.css">
 <!--===============================================================================================-->
@@ -16,75 +16,83 @@
 
 </head>
 <header>
+ <div style="background: #f2f2f2;"> 
 
 <?php  
 include "MenuDesign.php";
 ?>
 
-
-
-
- <div style="background: #f2f2f2;"> 
- <style>
-h5 {text-align: center;}
-h5 {font-size: 25px}
-</style>
- <br>
-
-<h5 >Inscription d'un administrateur </ :</h5>
-<br>
-   <br>
-
-   
 </div>
 </header>
 <body>
 
+
   <div class="limiter">
     <div class="container-main100">
       <div class="wrap-main-body">
-<form method="POST" action="insert-admin.php">
 
- <br>
+<form method="POST" action="Function-insert.php">
 
-           <div class="wrap-input100 validate-input" >
-		   <label align="right">Nom :</label>
-            <input class="input100" type="text" name="nom" id="" placeholder="Nom *" required>
-            <span class="focus-input100"></span>
-          </div>
+ 
 
            <div class="wrap-input100 validate-input" >
-      <label align="right">Tel :</label>
-            <input class="input100" type="text" name="tel" id="" placeholder="Tel *"  required>
+		   <label align="right">Identifiant du projet :</label>
+            <input class="input100" type="text" name="id" id="" placeholder="id*" required>
             <span class="focus-input100"></span>
           </div>
-
 
           <div class="wrap-input100 validate-input" >
-		  <label align="right">Email :</label>
-            <input class="input100" type="mail" name="mail" id="" placeholder="Email *"  required>
+		  <label align="right">Nom du projet :</label>
+            <input class="input100" type="text" name="nom" id="" placeholder="Nom Projet *"  required>
             <span class="focus-input100"></span>
           </div>
-
 
           <div class="wrap-input100 validate-input" >
-		  <label align="right">Mot de passe  :</label>
-            <input class="input100" type="password" name="pass" id="" placeholder="mot de passe *" required>
+		  <label align="right">Etat d'avancement du projet : </label>
+            <div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-primary active">
+    <input type="radio" name="etat" value="25"> 25%
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="etat" value="50" id="option2"> 50%
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="etat" value="75" id="option3"> 75%
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="etat" value="100" id="option3"> 100%
+  </label>
+</div>
             <span class="focus-input100"></span>
           </div>
-            <div class="wrap-input100 validate-input" >
-      <label align="right">Confirmer le mot de passe:</label>
-            <input class="input100" type="password" name="pass" id="" placeholder="mot de passe *" required>
+
+          <div class="wrap-input100 validate-input" >
+		  <label align="right">Autre :</label>
+            <input class="input100" type="text" name="autre" id="" placeholder="Autre" >
             <span class="focus-input100"></span>
           </div>
+		  
+		  <div class="wrap-input100 validate-input" >
+		  <label align="right">Commentaire / Remarque :</label>
+		  <br>
+            <textarea placeholder="Commentaire" cols="53" rows="3" name="commentaire"></textarea>
+            <span class="focus-input100"></span>
+          </div>
+
+      
+
           
-		 
+
+
+          
+          
+
 
 		<div class="container-main-form-btn" style=" padding-top: 60px;">
             <div class="wrap-main100-form-btn">
               <div class="main100-form-bgbtn"></div>
               <button type="submit" class="main100-form-btn" name="Valider">
-              Inscription
+                Envoyer
               </button>
             </div>
           </div>

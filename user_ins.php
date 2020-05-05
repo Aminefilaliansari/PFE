@@ -16,20 +16,26 @@
 
 </head>
 <header>
+
+<?php  
+include "MenuDesign.php";
+?>
+
+
+
+
  <div style="background: #f2f2f2;"> 
  <style>
 h5 {text-align: center;}
-h5 {color:blue;}
 h5 {font-size: 25px}
 </style>
  <br>
 
 <h5 >Inscription d'une agence ou d'un établissement </ :</h5>
 <br>
-   <br>
-   <br>
-   <br>
-  
+<br>
+
+
 </div>
 </header>
 <body>
@@ -60,7 +66,13 @@ h5 {font-size: 25px}
 		  
 <div class="wrap-input100 validate-input" >
 		  <label align="right">Adresse :</label>
-            <input class="input100" type="text" name="adresse" id="" placeholder="adresse *"  required>
+            <input class="input100" type="text" name="adresse" id="" placeholder="Adresse *"  required>
+            <span class="focus-input100"></span>
+          </div>
+
+          <div class="wrap-input100 validate-input" >
+      <label align="right">Tel :</label>
+            <input class="input100" type="text" name="tel" id="" placeholder="Tel *"  required>
             <span class="focus-input100"></span>
           </div>
 		  
@@ -71,17 +83,18 @@ h5 {font-size: 25px}
           </div>
 
 
-          <div class="wrap-input100 validate-input" >
-		  <label align="right">Password :</label>
-            <input class="input100" type="password" name="pass" id="" placeholder="Password *" required>
+         <div class="wrap-input100 validate-input" >
+      <label align="right">Mot de passe  :</label>
+            <input class="input100" type="password" name="pass" id="" placeholder="mot de passe *" required>
+            <span class="focus-input100"></span>
+          </div>
+            <div class="wrap-input100 validate-input" >
+      <label align="right">Confirmer le mot de passe:</label>
+            <input class="input100" type="password" name="pass" id="" placeholder="mot de passe *" required>
             <span class="focus-input100"></span>
           </div>
           
-		  <div class="wrap-input100 validate-input" >
-		  <label align="right">Tel :</label>
-            <input class="input100" type="text" name="tel" id="" placeholder="Tel *"  required>
-            <span class="focus-input100"></span>
-          </div>
+		  
 
 
 		<div class="container-main-form-btn" style=" padding-top: 60px;">

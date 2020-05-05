@@ -91,7 +91,7 @@ include ("database.php");
 
   //Avancementprojet
     $req_Avnc = "INSERT INTO `avancementprojet`(`idprojet`, `iduser`, `Label`, `Etat`, `Commentaire`) 
-    VALUES (".$IdProjet.",".$Iduser.",NULL,NULL,NULL)";
+    VALUES (".$IdProjet.",".$Iduser.",'".$_POST['TitreProjet'] ."',NULL,NULL)";
   //echo "Req-Avnc :".$req_Avnc;           
   mysqli_query($bdd,$req_Avnc);
 
