@@ -60,6 +60,11 @@ header{
   background: #f2f2f2
 }
 
+
+body{
+  background: #f2f2f2
+}
+
 a:focus {
 	outline: none !important;
 }
@@ -176,8 +181,7 @@ iframe {
 }
 
 .container-main100 {
-  width: 100%;  
-  min-height: 100vh;
+  width: 100%; 
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
