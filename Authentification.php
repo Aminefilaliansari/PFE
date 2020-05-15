@@ -39,7 +39,7 @@ if( isset($_POST['email']) && isset($_POST['pass']) && isset($_POST['submit']) &
         
       }
       else {
-      $sql = "SELECT * FROM Admin WHERE email = '" . $emailconnect . "' ";
+      $sql = "SELECT * FROM admin WHERE email = '" . $emailconnect . "' ";
       }
 
 
@@ -92,7 +92,7 @@ if( isset($_POST['email']) && isset($_POST['pass']) && isset($_POST['submit']) &
 
 <!-- Creation du Formualire -->
 
-<div style="margin-top: 50%;">
+<div style="margin-top: 10%;">
 <form method="POST">
 
 

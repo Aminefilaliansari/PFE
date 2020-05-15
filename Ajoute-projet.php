@@ -47,6 +47,7 @@ include ("database.php");
   $req_projet = "INSERT INTO `projet`(`IdProjet`, `TitreProjet`, `typeprojet`, `sujetprojet`, `textprojet`, `objectifprojet`, `specialiteprojet`, `champprojet`, `indicenrprojet`, `voteprojet`, `normeExcutprojet`, `indicesNRProjet`, `booleenPDR`, `SourcePDF`, `SourcePDF2`) 
   VALUES ( ".$IdProjet." ,'".$_POST['TitreProjet'] ."','". $_POST['typeprojet'] ."','". $_POST['sujetprojet'] ."','". $_POST['textprojet'] ."','". $_POST['objectifprojet'] ."','".$_POST['specialiteprojet'] ."','".$_POST['champprojet'] ."','".$_POST['indicenrprojet'] ."','". $_POST['voteprojet'] ."','". $_POST['normeExcutprojet'] ."','". $_POST['indicesNRProjet'] ."','". $_POST['booleenPDR'] ."',NULL,NULL)"; 
   mysqli_query($bdd,$req_projet);
+  //echo "Req-projet :".$req_projet;  
 
 
  
@@ -78,7 +79,7 @@ include ("database.php");
             
   $req_distruberprojet = "INSERT INTO `distruberprojet`(`idprojet`, `idadmin`, `iduser`, `NomExcute`) 
   VALUES (".$IdProjet.",1,".$Iduser.",'".$_POST['nomdistruber']."')";
- // echo "Req-dateprojet :".$req_distruberprojet;           
+  //echo "Req-dateprojet :".$req_distruberprojet;           
   mysqli_query($bdd,$req_distruberprojet);         
 
 
@@ -153,7 +154,7 @@ include ("database.php");
            <label>Titre projet : </label></div>
            <div class="col-md-8">
               <div class="wrap-input100 validate-input">
-            <input class="input100" type="text" name="TitreProjet" id="TitreProjet" placeholder="Titre de projet *" required>
+            <input class="input100" type="text" name="TitreProjet" id="TitreProjet" placeholder="Titre de projet " >
             <span class="focus-input100 "></span>
               </div>
           </div>  
@@ -164,7 +165,7 @@ include ("database.php");
            <label>Type de projet : </label></div>
            <div class="col-md-8">
             <div class="wrap-input100 validate-input">
-            <input class="input100" type="text" name="typeprojet" id="typeprojet" placeholder="Type projet *"  required>
+            <input class="input100" type="text" name="typeprojet" id="typeprojet" placeholder="Type projet "  >
             <span class="focus-input100"></span>
           </div>
           </div>
@@ -178,7 +179,7 @@ include ("database.php");
            <label>Sujet de projet : </label></div>
            <div class="col-md-8">
               <div class="wrap-input100 validate-input">
-            <input class="input100" type="text" name="sujetprojet" id="sujetprojet" placeholder="Sujet de projet *" required>
+            <input class="input100" type="text" name="sujetprojet" id="sujetprojet" placeholder="Sujet de projet " >
               <span class="focus-input100"></span>
           </div>
           </div>
@@ -210,7 +211,7 @@ include ("database.php");
            <label>Objectif du projet : </label></div>
            <div class="col-md-8">
               <div class="wrap-input100 validate-input">
-            <input class="input100" type="text" name="objectifprojet" id="objectifprojet" placeholder="Objectif du projet*" required>
+            <input class="input100" type="text" name="objectifprojet" id="objectifprojet" placeholder="Objectif du projet" >
               <span class="focus-input100"></span>
           </div>
           </div>
@@ -230,8 +231,9 @@ include ("database.php");
            <label>Specialite projet : </label></div>
            <div class="col-md-8">
             <select class="form-control" name="specialiteprojet" id="specialiteprojet" >
-              <option>Personnelle</option>
+              <option>Unique</option>
               <option>Commune</option>
+              <option>Personnelle</option>
             </select>
           </div>
          </div>
@@ -245,9 +247,15 @@ include ("database.php");
            <label>Champ de projet : </label></div>
            <div class="col-md-8">
             <select class="form-control"  name="champprojet" id="champprojet">
-              <option>Secteur sociale</option>
-              <option>Secteur economique</option>
+                            <option></option>
+              <option>Education</option>
+              <option>Infrastructure</option>
+              <option>Culturel</option>
+              <option>Santé</option>
+              <option>Secteur social</option>
+              <option>Secteur economic</option>
               <option>Secteur sanitaire</option>
+              <option>Secteur socioéconomie</option>
               <option>Autre</option>
             </select>
           </div>
@@ -264,7 +272,7 @@ include ("database.php");
            <label>Indicenrprojet ( number ) : </label></div>
            <div class="col-md-8">
               <div class="wrap-input100 validate-input">
-            <input class="input100" type="number" name="indicenrprojet" id="indicenrprojet" placeholder="Indicenrprojet*" required>
+            <input class="input100" type="number" name="indicenrprojet" id="indicenrprojet" placeholder="Indicenrprojet" >
               <span class="focus-input100"></span>
           </div>
           </div>
@@ -281,7 +289,7 @@ include ("database.php");
            <label>Vote projet ( number ) : </label></div>
            <div class="col-md-8">
               <div class="wrap-input100 validate-input">
-            <input class="input100" type="number" name="voteprojet" id="voteprojet" placeholder="Vote projet*" required>
+            <input class="input100" type="number" name="voteprojet" id="voteprojet" placeholder="Vote projet" >
               <span class="focus-input100"></span>
           </div>
           </div>
@@ -298,7 +306,7 @@ include ("database.php");
            <label>Norme excute projet : </label></div>
            <div class="col-md-8">
               <div class="wrap-input100 validate-input">
-            <input class="input100" type="text" name="normeExcutprojet" id="normeExcutprojet" placeholder="Norme excute projet*" required>
+            <input class="input100" type="text" name="normeExcutprojet" id="normeExcutprojet" placeholder="Norme excute projet" >
               <span class="focus-input100"></span>
           </div>
           </div>
@@ -315,7 +323,7 @@ include ("database.php");
            <label>Indice NRP (num): </label></div>
            <div class="col-md-8">
               <div class="wrap-input100 validate-input">
-            <input class="input100" type="number" name="indicesNRProjet" id="indicesNRProjet" placeholder="Indice NRP *" required>
+            <input class="input100" type="number" name="indicesNRProjet" id="indicesNRProjet" placeholder="Indice NRP " >
               <span class="focus-input100"></span>
           </div>
           </div>
@@ -458,7 +466,7 @@ include ("database.php");
 
 
            <div class="container-main-form-btn" style="     display: none; padding-top: 60px;">
-            <div class="wrap-main100-form-btn" style="width: 30%;float: right;">
+            <div class="wrap-main100-form-btn" style="width: 30%; float: right;">
               <div class="main100-form-bgbtn"></div>
               <button type="button" class="main100-form-btn" name="">
                 SUIVANT
@@ -481,7 +489,7 @@ include ("database.php");
            <label>Région : </label></div>
            <div class="col-md-8">
             <select class="form-control" name="region" id="region">
-              <option value="NULL">---------------------------</option>
+              <option value="NULL"></option>
               <option>Tangier-Tétouan-Al Hoceima</option>
               <option>Oriental</option>
               <option>Fez-Meknés</option>
@@ -504,10 +512,9 @@ include ("database.php");
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Provaince : </label></div>
            <div class="col-md-8">
-            <select class="form-control" name="provaince" id="provaince">
-              <option value="NULL">----------</option>
-              <option></option>
-            </select>
+
+            <input type="text" class="form-control" name="provaince" id="provaince" placeholder="">
+          
           </div>
          </div>
          
@@ -518,11 +525,7 @@ include ("database.php");
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Commune : </label></div>
            <div class="col-md-8">
-            <select class="form-control" name="commune" id="commune">
-              <option value="NULL">--------</option>
-              <option></option>
-              <option></option>
-            </select>
+           <input type="text" name="commune" class="form-control" id="commune" placeholder="">
           </div> 
          </div> 
 
@@ -531,8 +534,8 @@ include ("database.php");
            <div class="col-md-3" style="text-align: center;margin-top: 9px;">
            <label>Type Commune : </label></div>
            <div class="col-md-8">
-            <select class="form-control" name="Typecommune" id="Typecommune">
-              <option value="NULL">--------</option>
+            <select class="form-control" class="form-control"  name="Typecommune" id="Typecommune">
+              <option value="NULL"></option>
               <option>Rural</option>
               <option>Ubrain</option>
             </select>
@@ -571,11 +574,26 @@ include ("database.php");
           </div> 
             
 
+ 
+
+  <div class="col-md-2" style="text-align: center;margin-top: 9px;">
+           <label>nom distruber : </label></div>
+           <div class="col-md-3">
+            
+              <input type="text" class="form-control"  name="nomdistruber" id="nomdistruber" placeholder="">
+
+
+
+          </div> 
+          </div> 
+
+
+
 
 
 
        
-           <div class="col-md-2" style="text-align: center;margin-top: 9px;">
+     <!--       <div class="col-md-2" style="text-align: center;margin-top: 9px;">
            <label>nom distruber : </label></div>
            <div class="col-md-3">
             <select class="form-control" name="nomdistruber" id="nomdistruber" onchange="">
@@ -584,7 +602,7 @@ include ("database.php");
             </select>
           </div> 
           </div> 
-
+ -->
 
 
 
@@ -612,7 +630,7 @@ include ("database.php");
            <label>Contribution Etat : </label></div>
            <div class="col-md-8">
               <div class="wrap-input100 validate-input">
-            <input class="input100" type="number" name="Contrib_Etat" id="Contrib_Etat" placeholder="Contribution Etat *" required>
+            <input class="input100" type="number" name="Contrib_Etat" id="Contrib_Etat" placeholder="Contribution Etat " >
               <span class="focus-input100"></span>
           </div>
           </div>
@@ -624,7 +642,7 @@ include ("database.php");
            <label>Contribution Etablissement : </label></div>
            <div class="col-md-8">
               <div class="wrap-input100 validate-input">
-            <input class="input100" type="number" name="Contrib_Etabli" id="Contrib_Etabli" placeholder="Contribution Etablissement *" required>
+            <input class="input100" type="number" name="Contrib_Etabli" id="Contrib_Etabli" placeholder="Contribution Etablissement " >
               <span class="focus-input100"></span>
           </div>
           </div>
@@ -638,7 +656,7 @@ include ("database.php");
            <label>Nbr Etablissement: </label></div>
            <div class="col-md-8">
               <div class="wrap-input100 validate-input">
-            <input class="input100" type="number" name="NbrEtab" id="NbrEtab" placeholder="Nbr Etablissement *" required>
+            <input class="input100" type="number" name="NbrEtab" id="NbrEtab" placeholder="Nbr Etablissement " >
               <span class="focus-input100"></span>
           </div>
           </div>
@@ -652,7 +670,7 @@ include ("database.php");
            <label>DurAdmin : </label></div>
            <div class="col-md-8">
               <div class="wrap-input100 validate-input">
-            <input class="input100" type="number" name="durAdmin" id="durAdmin" placeholder="DurAdmin *" required>
+            <input class="input100" type="number" name="durAdmin" id="durAdmin" placeholder="DurAdmin " >
               <span class="focus-input100"></span>
           </div>
           </div>
@@ -665,7 +683,7 @@ include ("database.php");
            <label>DurEtablissement : </label></div>
            <div class="col-md-8">
               <div class="wrap-input100 validate-input">
-            <input class="input100" type="number" name="durEtabli" id="durEtabli" placeholder="DurEtablissement *" required>
+            <input class="input100" type="number" name="durEtabli" id="durEtabli" placeholder="DurEtablissement " >
               <span class="focus-input100"></span>
           </div>
           </div>

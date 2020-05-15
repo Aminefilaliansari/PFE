@@ -39,6 +39,7 @@ include "MenuDesign.php";
    <tr>
      <th>ID Projet</th>
      <th>Titre de projet </th>
+     <th>Etat d'avancement</th> 
      <th colspan="2">Action</th>
    </tr>
 
@@ -49,7 +50,7 @@ include "MenuDesign.php";
 
 
 include("database.php");
- $sql = "SELECT * FROM projet";
+ $sql = "SELECT * FROM projet INNER JOIN avancementprojet on projet.IdProjet = avancementprojet.idprojet";
 $result = mysqli_query($bdd,$sql);
 
 
@@ -68,6 +69,14 @@ $iduser00=1;
 <tr>
 <td id="IdProjet"><?php echo $row["IdProjet"];  ?></td>
 <td id="TitreProjet"><?php echo $row["TitreProjet"];  ?></td>
+<td id="TitreProjet">
+
+<?php if($row["Etat"]==NULL){echo "0%";}
+      else {echo $row["Etat"]."%" ;}
+
+ ?>
+
+ </td>
 <td>
   <a href="Etat_avancement.php?Etat=<?php echo $row["IdProjet"]; ?>" 
   class="btn btn-warning" name="<?php echo $row["IdProjet"]; ?>">Modifer Etat D'avancement</a>

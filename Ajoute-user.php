@@ -39,7 +39,15 @@ function choix(sw) {
 <header>
  <div style="background: #f2f2f2;"> 
 
+<?php  
+include "MenuDesign.php";
+
+?>
+
+
+
 </div>
+</header>
 </header>
 <body>
 
