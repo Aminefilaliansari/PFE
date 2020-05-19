@@ -34,13 +34,13 @@ include "MenuDesign.php";
 <div class="container">
 <div class="row justify-content-center">
 
-<table class="table">
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
  <thead>
    <tr>
-     <th>ID Projet</th>
-     <th>Titre de projet </th>
-     <th>Etat d'avancement</th> 
-     <th colspan="2">Action</th>
+     <th class="th-sm">ID Projet</th>
+     <th class="th-sm">Titre de projet </th>
+     <th class="th-sm">Etat d'avancement</th> 
+     <th  class="th-sm" colspan="2">Action</th>
    </tr>
 
 
@@ -99,6 +99,18 @@ $iduser00=1;
 </div>
 
 
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+  
+$(document).ready(function () {
+  $('#dtBasicExample').DataTable({
+    "pagingType": "simple" // "simple" option for 'Previous' and 'Next' buttons only
+  });
+  $('.dataTables_length').addClass('bs-select');
+});
+
+</script>
 
 
 

@@ -12,7 +12,7 @@ if($_POST['provaince03']==""){
 
 $stmt = $connection->query("
 
-SELECT  zone.commune, COUNT(projet.IdProjet) FROM `projet` INNER JOIN zone ON projet.IdProjet=zone.idprojet
+SELECT CONCAT(zone.commune,' , ', zone.provaince), COUNT(projet.IdProjet) FROM `projet` INNER JOIN zone ON projet.IdProjet=zone.idprojet
 WHERE projet.booleenPDR=1
 GROUP BY zone.commune
 
@@ -26,7 +26,7 @@ else {
 
 $stmt = $connection->query("
 
-SELECT zone.commune, COUNT(projet.IdProjet), zone.provaince FROM `projet` INNER JOIN zone ON projet.IdProjet=zone.idprojet 
+SELECT CONCAT(zone.commune,' ,  ', zone.provaince), COUNT(projet.IdProjet), zone.provaince FROM `projet` INNER JOIN zone ON projet.IdProjet=zone.idprojet 
 WHERE projet.booleenPDR=1 AND zone.provaince = '".$_POST['provaince03']."' 
 GROUP BY zone.commune
   ");

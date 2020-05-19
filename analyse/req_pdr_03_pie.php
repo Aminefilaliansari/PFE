@@ -23,10 +23,9 @@
 
 if($stmt = $connection->query("
 
-SELECT  zone.commune, COUNT(projet.IdProjet) FROM `projet` INNER JOIN zone ON projet.IdProjet=zone.idprojet
+SELECT CONCAT(zone.commune,' , ', zone.provaince), COUNT(projet.IdProjet) FROM `projet` INNER JOIN zone ON projet.IdProjet=zone.idprojet
 WHERE projet.booleenPDR=1
 GROUP BY zone.commune
-
   ")){
 
 $php_data_array = Array(); // create PHP array
@@ -57,7 +56,7 @@ echo "<script>
 
 
 
-<span id="titreanalyse" class="main100-form-title">3  - Proposition de la relation de projet avec le PDR selon Commune et provaince :  </span>
+<span id="titreanalyse" class="main100-form-title">3  - Propostion de la relation de projet avec le PDR selon Commune et provaince :  </span>
 <div class="row  justify-content-center"  style="text-align:center">
 <form method="POST" action>
 <label style="margin-top: 30px;">Provaince : </label style="">
@@ -89,7 +88,7 @@ echo "<script>
 		for(i = 0; i < my_2d03.length; i++)
     data.addRow([my_2d03[i][0], parseInt(my_2d03[i][1])]);
 // above row adds the JavaScript two dimensional array data into required chart format
-    var options = {title:'3  - Proposition de la relation de projet avec le PDR selon Commune et provaince :  ',
+    var options = {title:'3  - Propostion de la relation de projet avec le PDR selon Commune et provaince :  ',
                        width:1150,
                        height:700};
 

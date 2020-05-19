@@ -42,19 +42,19 @@ include ("database.php");
   $result = mysqli_query($bdd,$sql);
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);      
   $IdProjet= $row["IdProjet"]+1;
-  //echo "ID_PROJET est :".$IdProjet;
+  echo "ID_PROJET est :".$IdProjet;
 
   $req_projet = "INSERT INTO `projet`(`IdProjet`, `TitreProjet`, `typeprojet`, `sujetprojet`, `textprojet`, `objectifprojet`, `specialiteprojet`, `champprojet`, `indicenrprojet`, `voteprojet`, `normeExcutprojet`, `indicesNRProjet`, `booleenPDR`, `SourcePDF`, `SourcePDF2`) 
   VALUES ( ".$IdProjet." ,'".$_POST['TitreProjet'] ."','". $_POST['typeprojet'] ."','". $_POST['sujetprojet'] ."','". $_POST['textprojet'] ."','". $_POST['objectifprojet'] ."','".$_POST['specialiteprojet'] ."','".$_POST['champprojet'] ."','".$_POST['indicenrprojet'] ."','". $_POST['voteprojet'] ."','". $_POST['normeExcutprojet'] ."','". $_POST['indicesNRProjet'] ."','". $_POST['booleenPDR'] ."',NULL,NULL)"; 
   mysqli_query($bdd,$req_projet);
-  //echo "Req-projet :".$req_projet;  
+  echo "Req-projet :".$req_projet;  
 
 
  
     //DateProjet
   $req_dateprojet ="INSERT INTO `dateprojet`(`idprojet`, `dateAuthentif`, `dateDistribut`, `dateMark`, `dateExecut`) 
   VALUES (".$IdProjet.",'".$_POST['dateAuthentif']."','".$_POST['dateDistribut']."','".$_POST['dateMark']."','".$_POST['dateExecut']."')";   
-  //echo "Req-dateprojet :".$req_dateprojet;           
+  echo "Req-dateprojet :".$req_dateprojet;           
   mysqli_query($bdd,$req_dateprojet);
 
 
@@ -62,7 +62,7 @@ include ("database.php");
     //ZONE
   $req_zone = "INSERT INTO `zone`(`idprojet`, `region`, `provaince`, `commune`, `Typecommune`) 
   VALUES (".$IdProjet.",'".$_POST['region']."','".$_POST['provaince']."','".$_POST['commune']."','".$_POST['Typecommune']."')";
-  //echo "Req-dateprojet :".$req_zone;           
+  echo "Req-dateprojet :".$req_zone;           
   mysqli_query($bdd,$req_zone);
 
    
@@ -75,11 +75,11 @@ include ("database.php");
   }
   else{
   $Iduser= $row["idUser"];}
-  //echo "ID_USER est :".$Iduser;
+  echo "ID_USER est :".$Iduser;
             
   $req_distruberprojet = "INSERT INTO `distruberprojet`(`idprojet`, `idadmin`, `iduser`, `NomExcute`) 
   VALUES (".$IdProjet.",1,".$Iduser.",'".$_POST['nomdistruber']."')";
-  //echo "Req-dateprojet :".$req_distruberprojet;           
+  echo "Req-dateprojet :".$req_distruberprojet;           
   mysqli_query($bdd,$req_distruberprojet);         
 
 
@@ -87,13 +87,13 @@ include ("database.php");
 
   $req_fin = "INSERT INTO `financeprojet`(`idprojet`, `Contrib_Etat`, `Contrib_Etabli`, `NbrEtab`, `durAdmin`, `durEtabli`)
    VALUES (".$IdProjet.",'". $_POST['Contrib_Etat'] ."','". $_POST['Contrib_Etabli'] ."','". $_POST['NbrEtab'] ."','". $_POST['durAdmin'] ."','". $_POST['durEtabli'] ."')";
-  //echo "Req-fin :".$req_fin;           
+  echo "Req-fin :".$req_fin;           
   mysqli_query($bdd,$req_fin);
 
   //Avancementprojet
     $req_Avnc = "INSERT INTO `avancementprojet`(`idprojet`, `iduser`, `Label`, `Etat`, `Commentaire`) 
     VALUES (".$IdProjet.",".$Iduser.",'".$_POST['TitreProjet'] ."',NULL,NULL)";
-  //echo "Req-Avnc :".$req_Avnc;           
+  echo "Req-Avnc :".$req_Avnc;           
   mysqli_query($bdd,$req_Avnc);
 
 
