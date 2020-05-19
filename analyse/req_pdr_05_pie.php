@@ -35,7 +35,21 @@ echo "<script>
 ?>
 
 
-<div id="req_pdr_05_pie"></div>
+<span id="titreanalyse" class="main100-form-title">5  -  Proposition de la relation de projet avec le PDR selon de le type de commune d une provaince : </span>
+<div class="row  justify-content-center"  style="text-align:center">
+<form method="POST" action>
+<label style="margin-top: 30px;">Provaince : </label style="">
+<div  style="margin: auto;width: 350px;">
+<input type="text" class="form-control" name="provaince05" id="provaince05" placeholder="">
+<input type="button" class="main100-form-btn" value="Recherche" id="Rech05" name="Rech05" style="z-index: 2;position: relative;">
+</div>
+<div id="req_pdr_05_pie" style="margin-left: 178px; margin-top: -44px;"></div>
+</form>
+</div>
+
+
+
+
 </body>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
@@ -60,6 +74,64 @@ echo "<script>
         chart.draw(data, options);
       }
 </script>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+// On reprend le même id que dans le précédent chapitre
+
+ $(document).ready(function(){
+
+
+$("#Rech05").click(function(e){
+   alert('La deuxième zone a été mise à jour');
+   e.preventDefault();
+
+    var provaince05 = $('#provaince05').val();
+
+
+
+     $.ajax({
+            type: 'POST',
+            url: 'analyse/data_pie/data_req_pdr_05_pie.php', 
+            data: {ajax: 1,provaince05: provaince05}
+        })
+        .done(function(data){
+             
+            // show the response
+            alert( "YES." );
+            $('#req_pdr_05_pie').html(data);
+             
+        })
+        .fail(function() {
+         
+            // just in case posting your form failed
+            alert( "Posting failed." );
+             
+        });
+ 
+        // to prevent refreshing the whole page page
+        return false;
+
+
+});
+
+});
+
+</script>
+
+
+
+
+
+
+
+
 </html>
 
 

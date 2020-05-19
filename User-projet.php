@@ -80,6 +80,8 @@ $iduser00=1;
 <td>
   <a href="Etat_avancement.php?Etat=<?php echo $row["IdProjet"]; ?>" 
   class="btn btn-warning" name="<?php echo $row["IdProjet"]; ?>">Modifer Etat D'avancement</a>
+  <a href="detail.php?idprojet=<?php echo $row["IdProjet"]; ?>" 
+  class="btn btn-info" name="<?php echo $row["IdProjet"]; ?>">Detail de projet</a>
 </td>
 </tr>
 

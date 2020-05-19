@@ -43,6 +43,73 @@ INSERT INTO `admin` (`IdAdmin`, `Nom`, `Email`, `Password`) VALUES
 
 -- --------------------------------------------------------
 
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `projet`
+--
+
+CREATE TABLE `projet` (
+  `IdProjet` int(10) NOT NULL,
+  `TitreProjet` varchar(50) DEFAULT NULL,
+  `typeprojet` varchar(50) DEFAULT NULL,
+  `sujetprojet` varchar(50) DEFAULT NULL,
+  `textprojet` text,
+  `objectifprojet` text,
+  `specialiteprojet` varchar(50) DEFAULT NULL,
+  `champprojet` varchar(50) DEFAULT NULL,
+  `indicenrprojet` int(10) DEFAULT NULL,
+  `voteprojet` int(10) DEFAULT NULL,
+  `normeExcutprojet` text,
+  `indicesNRProjet` float DEFAULT NULL,
+  `booleenPDR` tinyint(1) DEFAULT NULL,
+  `SourcePDF` blob,
+  `SourcePDF2` blob
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `projet`
+--
+
+INSERT INTO `projet` (`IdProjet`, `TitreProjet`, `typeprojet`, `sujetprojet`, `textprojet`, `objectifprojet`, `specialiteprojet`, `champprojet`, `indicenrprojet`, `voteprojet`, `normeExcutprojet`, `indicesNRProjet`, `booleenPDR`, `SourcePDF`, `SourcePDF2`) VALUES
+(3, 'construire une zone touristique  1', 'convention', 'construire une zone touristique  1', '        construire une zone touristique  1\r\n   ', '', 'Commune', '', 2, 1, '', 0, 1, NULL, NULL),
+(4, 'route 2313874', 'convention', 'route 2313874', '            route 2313874\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
+(5, 'musÃ©e  56652', 'musÃ©e  56652', 'musÃ©e  56652', '            ', '', 'Unique', '', 0, 0, '', 0, 1, NULL, NULL),
+(6, 'construction de l ecole M', 'convention', 'construction de l ecole M', '            construction de l ecole M\r\n', '', 'Unique', '', 0, 0, '', 0, 1, NULL, NULL),
+(7, 'forums ', 'convention', 'forums ', '            forums \r\n', '', 'Unique', '', 0, 0, '', 0, 1, NULL, NULL),
+(8, 'centre de formation 1', 'convention', 'centre de formation 1', '            centre de formation 1\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
+(9, 'centre de formation 1', 'convention', 'centre de formation 1', '        centre de formation 1\r\n    ', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
+(10, 'centre de technologie 2', 'convention', 'centre de technologie 2', '            centre de technologie 2\r\n', '', 'Unique', '', 0, 0, '', 0, 1, NULL, NULL),
+(11, 'contribuer aux hopiteaux 3254', 'convention', 'contribuer aux hopiteaux 3254', '            contribuer aux hopiteaux 3254\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
+(12, 'construction de la sociÃ©tÃ© D', 'convention', 'construction de la sociÃ©tÃ© D', '            construction de la sociÃ©tÃ© D\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
+(13, 'marchÃ© 56412', 'convention', 'marchÃ© 56412', '            marchÃ© 56412\r\n', '', 'Unique', '', 0, 0, '', 0, 1, NULL, NULL),
+(14, 'construction de l ecole H', 'convention', 'construction de l ecole H', '            construction de l ecole H\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
+(15, 'construction de l ecole y ', 'convention  ', 'construction de l ecole y ', '            unique  ', 'education', 'Unique', '', 0, 6, '', 0, 1, NULL, NULL),
+(16, 'contribuer aux lignes 21564', 'convention', 'contribuer aux lignes 21564', '            contribuer aux lignes 21564\r\n', '', 'Unique', '', 0, 0, '', 0, 1, NULL, NULL),
+(17, 'projets sociaux ', 'convention', 'projets sociaux ', '         projets sociaux \r\n   ', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
+(18, 'construction de l ecole K', 'convention', 'construction de l ecole K', 'construction de l ecole K\r\n            ', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
+(19, 'transport scolaires  ', 'convention', 'transport scolaires  ', '         transport scolaires  \r\n   ', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
+(20, 'construction de l ecole y', 'convention', 'construction de l ecole y', '            construction de l ecole y\r\n', '', 'Unique', '', 0, 0, '', 0, 1, NULL, NULL),
+(21, 'construire une zone touristique  1', 'convention', 'construire une zone touristique  1', '            construire une zone touristique  1\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
+(22, 'route 2313874', 'convention', 'route 2313874', '            route 2313874\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
+(23, 'transport scolaires   ', 'convention  ', 'transport scolaires ', 'transport scolaires ', 'education', 'Commune', '', 0, 9, '', 0, 1, NULL, NULL),
+(24, 'musÃ©e  56652', 'convention', 'musÃ©e  56652', '          musÃ©e  56652\r\n  ', '', 'Unique', '', 0, 0, '', 0, 1, NULL, NULL),
+(25, 'construction de l ecole M', 'convention', 'construction de l ecole M', '            construction de l ecole M\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
+(26, 'construction de l ecole K ', 'convention  ', 'construction de l ecole K ', '    construction de l ecole K            ', 'commun', 'Unique', 'Education', 0, 3, '', 0, 0, NULL, NULL),
+(27, 'projets sociaux     ', 'convention  ', 'projets sociaux   ', '            projets sociaux   ', 'commun  ', 'Unique', 'Secteur social', 0, 5, '', 0, 1, NULL, NULL),
+(28, 'construction de l ecole M', 'convention', 'construction de l ecole M', '            construction de l ecole M\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
+(29, 'contribuer aux lignes 21564', 'convention ', 'contribuer aux lignes 21564 ', '            contribuer aux lignes 21564   ', '            contribuer aux lignes 21564   ', 'Unique', 'Infrastructure', 0, 0, '', 0, 0, NULL, NULL),
+(30, 'construction de l ecole M', 'convention', 'construction de l ecole M', '            construction de l ecole M\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
+(31, 'marchÃ© 56412 ', 'convention  ', 'marchÃ© 56412 ', '            marchÃ© 56412 ', 'marchÃ© 56412 ', 'Unique', 'Secteur economic', 0, 12, '', 0, 0, NULL, NULL),
+(32, 'construction de la sociÃ©tÃ© D  ', 'convention  ', 'construction de la sociÃ©tÃ© D    ', '            construction de la sociÃ©tÃ© D  ', 'construction de la sociÃ©tÃ© D  ', 'Commune', 'Secteur economic', 0, 10, '', 0, 0, NULL, NULL),
+(33, 'contribuer aux hopiteaux 3254', 'convention', 'contribuer aux hopiteaux 3254  ', '            contribuer aux hopiteaux 3254 ', 'contribuer aux hopiteaux 3254 ', 'Commune', 'SantÃ©', 0, 8, '', 0, 1, NULL, NULL),
+(34, 'centre de technologie 2 ', 'convention  ', 'centre de technologie 2 ', '      centre de technologie 2       ', 'centre de technologie 2 ', 'Unique', 'Education', 0, 9, '', 0, 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
 --
 -- Structure de la table `avancementprojet`
 --
@@ -271,69 +338,7 @@ CREATE TABLE `notification` (
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `projet`
---
-
-CREATE TABLE `projet` (
-  `IdProjet` int(10) NOT NULL,
-  `TitreProjet` varchar(50) DEFAULT NULL,
-  `typeprojet` varchar(50) DEFAULT NULL,
-  `sujetprojet` varchar(50) DEFAULT NULL,
-  `textprojet` text,
-  `objectifprojet` text,
-  `specialiteprojet` varchar(50) DEFAULT NULL,
-  `champprojet` varchar(50) DEFAULT NULL,
-  `indicenrprojet` int(10) DEFAULT NULL,
-  `voteprojet` int(10) DEFAULT NULL,
-  `normeExcutprojet` text,
-  `indicesNRProjet` float DEFAULT NULL,
-  `booleenPDR` tinyint(1) DEFAULT NULL,
-  `SourcePDF` blob,
-  `SourcePDF2` blob
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `projet`
---
-
-INSERT INTO `projet` (`IdProjet`, `TitreProjet`, `typeprojet`, `sujetprojet`, `textprojet`, `objectifprojet`, `specialiteprojet`, `champprojet`, `indicenrprojet`, `voteprojet`, `normeExcutprojet`, `indicesNRProjet`, `booleenPDR`, `SourcePDF`, `SourcePDF2`) VALUES
-(3, 'construire une zone touristique  1', 'convention', 'construire une zone touristique  1', '        construire une zone touristique  1\r\n   ', '', 'Commune', '', 2, 1, '', 0, 1, NULL, NULL),
-(4, 'route 2313874', 'convention', 'route 2313874', '            route 2313874\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
-(5, 'musÃ©e  56652', 'musÃ©e  56652', 'musÃ©e  56652', '            ', '', 'Unique', '', 0, 0, '', 0, 1, NULL, NULL),
-(6, 'construction de l ecole M', 'convention', 'construction de l ecole M', '            construction de l ecole M\r\n', '', 'Unique', '', 0, 0, '', 0, 1, NULL, NULL),
-(7, 'forums ', 'convention', 'forums ', '            forums \r\n', '', 'Unique', '', 0, 0, '', 0, 1, NULL, NULL),
-(8, 'centre de formation 1', 'convention', 'centre de formation 1', '            centre de formation 1\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
-(9, 'centre de formation 1', 'convention', 'centre de formation 1', '        centre de formation 1\r\n    ', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
-(10, 'centre de technologie 2', 'convention', 'centre de technologie 2', '            centre de technologie 2\r\n', '', 'Unique', '', 0, 0, '', 0, 1, NULL, NULL),
-(11, 'contribuer aux hopiteaux 3254', 'convention', 'contribuer aux hopiteaux 3254', '            contribuer aux hopiteaux 3254\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
-(12, 'construction de la sociÃ©tÃ© D', 'convention', 'construction de la sociÃ©tÃ© D', '            construction de la sociÃ©tÃ© D\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
-(13, 'marchÃ© 56412', 'convention', 'marchÃ© 56412', '            marchÃ© 56412\r\n', '', 'Unique', '', 0, 0, '', 0, 1, NULL, NULL),
-(14, 'construction de l ecole H', 'convention', 'construction de l ecole H', '            construction de l ecole H\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
-(15, 'construction de l ecole y	', 'convention	', 'construction de l ecole y	', '            unique 	', 'education', 'Unique', '', 0, 6, '', 0, 1, NULL, NULL),
-(16, 'contribuer aux lignes 21564', 'convention', 'contribuer aux lignes 21564', '            contribuer aux lignes 21564\r\n', '', 'Unique', '', 0, 0, '', 0, 1, NULL, NULL),
-(17, 'projets sociaux ', 'convention', 'projets sociaux ', '         projets sociaux \r\n   ', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
-(18, 'construction de l ecole K', 'convention', 'construction de l ecole K', 'construction de l ecole K\r\n            ', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
-(19, 'transport scolaires  ', 'convention', 'transport scolaires  ', '         transport scolaires  \r\n   ', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
-(20, 'construction de l ecole y', 'convention', 'construction de l ecole y', '            construction de l ecole y\r\n', '', 'Unique', '', 0, 0, '', 0, 1, NULL, NULL),
-(21, 'construire une zone touristique  1', 'convention', 'construire une zone touristique  1', '            construire une zone touristique  1\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
-(22, 'route 2313874', 'convention', 'route 2313874', '            route 2313874\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
-(23, 'transport scolaires  	', 'convention	', 'transport scolaires ', 'transport scolaires ', 'education', 'Commune', '', 0, 9, '', 0, 1, NULL, NULL),
-(24, 'musÃ©e  56652', 'convention', 'musÃ©e  56652', '          musÃ©e  56652\r\n  ', '', 'Unique', '', 0, 0, '', 0, 1, NULL, NULL),
-(25, 'construction de l ecole M', 'convention', 'construction de l ecole M', '            construction de l ecole M\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
-(26, 'construction de l ecole K	', 'convention	', 'construction de l ecole K	', '   	construction de l ecole K		         ', 'commun', 'Unique', 'Education', 0, 3, '', 0, 0, NULL, NULL),
-(27, 'projets sociaux 		', 'convention	', 'projets sociaux 	', '            projets sociaux 	', 'commun	', 'Unique', 'Secteur social', 0, 5, '', 0, 1, NULL, NULL),
-(28, 'construction de l ecole M', 'convention', 'construction de l ecole M', '            construction de l ecole M\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
-(29, 'contribuer aux lignes 21564', 'convention	', 'contribuer aux lignes 21564	', '            contribuer aux lignes 21564		', '            contribuer aux lignes 21564		', 'Unique', 'Infrastructure', 0, 0, '', 0, 0, NULL, NULL),
-(30, 'construction de l ecole M', 'convention', 'construction de l ecole M', '            construction de l ecole M\r\n', '', 'Commune', '', 0, 0, '', 0, 1, NULL, NULL),
-(31, 'marchÃ© 56412	', 'convention	', 'marchÃ© 56412	', '            marchÃ© 56412	', 'marchÃ© 56412	', 'Unique', 'Secteur economic', 0, 12, '', 0, 0, NULL, NULL),
-(32, 'construction de la sociÃ©tÃ© D	', 'convention	', 'construction de la sociÃ©tÃ© D		', '            construction de la sociÃ©tÃ© D	', 'construction de la sociÃ©tÃ© D	', 'Commune', 'Secteur economic', 0, 10, '', 0, 0, NULL, NULL),
-(33, 'contribuer aux hopiteaux 3254', 'convention', 'contribuer aux hopiteaux 3254	', '            contribuer aux hopiteaux 3254	', 'contribuer aux hopiteaux 3254	', 'Commune', 'SantÃ©', 0, 8, '', 0, 1, NULL, NULL),
-(34, 'centre de technologie 2	', 'convention	', 'centre de technologie 2	', '      centre de technologie 2	      ', 'centre de technologie 2	', 'Unique', 'Education', 0, 9, '', 0, 1, NULL, NULL);
-
--- --------------------------------------------------------
 
 --
 -- Structure de la table `user`

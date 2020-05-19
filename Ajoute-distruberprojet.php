@@ -58,42 +58,57 @@ include "MenuDesign.php";
 
           <span class="label-input100">Nom distruber</span>
           <div>
-            <select class="selection-2" name="nomdistruber" id="nomdistruber" onchange="">
+            <select class="selection-2" name="nomdistruber" id="nomdistruber">
          
             </select>
           </div>  
 
 
-          <script type="text/javascript">
-          $(document).ready(function)(){
-            $('#roledistruber').change(function(){
 
-              var roledistruber = $(this).val();
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+// On reprend le même id que dans le précédent chapitre
+
+ $(document).ready(function(){
 
 
+$("#roledistruber").change(function(e){
+   alert('La deuxième ');
+   e.preventDefault();
 
-              $.ajax({
-
-                  url:"load_data.php",
-                  type : "POST",
-                  data:{roledistruber:roledistruber},
-                  success:function(data){
-                    $('#roledistruber').html(html);
-
-                  }
-
-              });
-
-          });
+    var roledistruber = $('#roledistruber').val();
 
 
 
-          }
+     $.ajax({
+            type: 'POST',
+            url: 'load_data.php', 
+            data: {roledistruber: roledistruber}
+        })
+        .done(function(data){
+             
+            // show the response
+            //alert( "YES." );
+            $('#nomdistruber').html(data);
+             
+        })
+        .fail(function() {
+         
+            // just in case posting your form failed
+            alert( "Posting failed." );
+             
+        });
+ 
+        // to prevent refreshing the whole page page
+        return false;
 
 
-          </script>   
+});
 
+});
 
+</script>
 
 
       

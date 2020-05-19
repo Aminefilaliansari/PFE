@@ -141,12 +141,17 @@ include "Map.php";
            <div class="row  justify-content-center p-b-15" >
 
 
-
+             <?php  include "./analyse/req_fin_11_pie.php";?>  
              <?php  include "./analyse/req_fin_01_bar.php";?>
+             <?php  include "./analyse/req_fin_22_pie.php";?> 
               <?php  include "./analyse/req_fin_02_bar.php";?>
+              <?php  include "./analyse/req_fin_33_pie.php";?> 
               <?php  include "./analyse/req_fin_03_bar.php";?>
+              <?php  include "./analyse/req_fin_44_pie.php";?> 
               <?php  include "./analyse/req_fin_04_bar.php";?>
-
+              <?php  include "./analyse/req_fin_66_pie.php";?> 
+              <?php  include "./analyse/req_fin_77_pie.php";?> 
+              <?php  include "./analyse/req_fin_88_pie.php";?> 
 
            </div>
         

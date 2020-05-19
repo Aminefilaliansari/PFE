@@ -25,85 +25,7 @@ include "MenuDesign.php";
 <body>
 
 
-<?php  
-include ("database.php");
-?>
 
-
-<?php
-  
-
-
-  if (isset($_POST['Validerprojet'])  ) 
-{
-
-    //infoprojet
-  $sql = "SELECT IdProjet FROM projet WHERE IdProjet IS NOT NULL ORDER BY IdProjet DESC";  
-  $result = mysqli_query($bdd,$sql);
-  $row = mysqli_fetch_array($result,MYSQLI_ASSOC);      
-  $IdProjet= $row["IdProjet"]+1;
-  //echo "ID_PROJET est :".$IdProjet;
-
-  $req_projet = "INSERT INTO `projet`(`IdProjet`, `TitreProjet`, `typeprojet`, `sujetprojet`, `textprojet`, `objectifprojet`, `specialiteprojet`, `champprojet`, `indicenrprojet`, `voteprojet`, `normeExcutprojet`, `indicesNRProjet`, `booleenPDR`, `SourcePDF`, `SourcePDF2`) 
-  VALUES ( ".$IdProjet." ,'".$_POST['TitreProjet'] ."','". $_POST['typeprojet'] ."','". $_POST['sujetprojet'] ."','". $_POST['textprojet'] ."','". $_POST['objectifprojet'] ."','".$_POST['specialiteprojet'] ."','".$_POST['champprojet'] ."','".$_POST['indicenrprojet'] ."','". $_POST['voteprojet'] ."','". $_POST['normeExcutprojet'] ."','". $_POST['indicesNRProjet'] ."','". $_POST['booleenPDR'] ."',NULL,NULL)"; 
-  mysqli_query($bdd,$req_projet);
-  //echo "Req-projet :".$req_projet;  
-
-
- 
-    //DateProjet
-  $req_dateprojet ="INSERT INTO `dateprojet`(`idprojet`, `dateAuthentif`, `dateDistribut`, `dateMark`, `dateExecut`) 
-  VALUES (".$IdProjet.",'".$_POST['dateAuthentif']."','".$_POST['dateDistribut']."','".$_POST['dateMark']."','".$_POST['dateExecut']."')";   
-  //echo "Req-dateprojet :".$req_dateprojet;           
-  mysqli_query($bdd,$req_dateprojet);
-
-
-
-    //ZONE
-  $req_zone = "INSERT INTO `zone`(`idprojet`, `region`, `provaince`, `commune`, `Typecommune`) 
-  VALUES (".$IdProjet.",'".$_POST['region']."','".$_POST['provaince']."','".$_POST['commune']."','".$_POST['Typecommune']."')";
-  //echo "Req-dateprojet :".$req_zone;           
-  mysqli_query($bdd,$req_zone);
-
-   
-   // distuber
-  $sql = "SELECT idUser FROM `user` WHERE Nom='".$_POST['nomdistruber']."'";  
-  $result = mysqli_query($bdd,$sql);
-  $row = mysqli_fetch_array($result,MYSQLI_ASSOC);      
-  if ($_POST['roledistruber']=="Admin") {
-          $Iduser= 'NULL';
-  }
-  else{
-  $Iduser= $row["idUser"];}
-  //echo "ID_USER est :".$Iduser;
-            
-  $req_distruberprojet = "INSERT INTO `distruberprojet`(`idprojet`, `idadmin`, `iduser`, `NomExcute`) 
-  VALUES (".$IdProjet.",1,".$Iduser.",'".$_POST['nomdistruber']."')";
-  //echo "Req-dateprojet :".$req_distruberprojet;           
-  mysqli_query($bdd,$req_distruberprojet);         
-
-
-    //Table Fin
-
-  $req_fin = "INSERT INTO `financeprojet`(`idprojet`, `Contrib_Etat`, `Contrib_Etabli`, `NbrEtab`, `durAdmin`, `durEtabli`)
-   VALUES (".$IdProjet.",'". $_POST['Contrib_Etat'] ."','". $_POST['Contrib_Etabli'] ."','". $_POST['NbrEtab'] ."','". $_POST['durAdmin'] ."','". $_POST['durEtabli'] ."')";
-  //echo "Req-fin :".$req_fin;           
-  mysqli_query($bdd,$req_fin);
-
-  //Avancementprojet
-    $req_Avnc = "INSERT INTO `avancementprojet`(`idprojet`, `iduser`, `Label`, `Etat`, `Commentaire`) 
-    VALUES (".$IdProjet.",".$Iduser.",'".$_POST['TitreProjet'] ."',NULL,NULL)";
-  //echo "Req-Avnc :".$req_Avnc;           
-  mysqli_query($bdd,$req_Avnc);
-
-
-   echo "<div class='alert alert-success' role='alert'>
-  Le projet est ajouteé avec succèe
-</div>";
-  }
-  
-  
-  ?>
 
 
 
@@ -111,10 +33,9 @@ include ("database.php");
     <div class="container-main100">
       <div class="wrap-main-body">
 
-<form method="POST">
 
  <span class="main100-form-title p-b-70">
-            Ajouter un projet
+            Detail projet
           </span>
 
   
@@ -377,15 +298,7 @@ include ("database.php");
           </div>          
 
 
-           <div class="container-main-form-btn" style="     display: none; padding-top: 60px;">
-            <div class="wrap-main100-form-btn" style="width: 30%;float: right;">
-              <div class="main100-form-bgbtn"></div>
-              <button type="button" class="main100-form-btn" name="">
-                SUIVANT
-              </button>
-            </div>
-          </div>
- 
+        
 
 
 </div>
@@ -464,14 +377,7 @@ include ("database.php");
 
 
 
-           <div class="container-main-form-btn" style="     display: none; padding-top: 60px;">
-            <div class="wrap-main100-form-btn" style="width: 30%; float: right;">
-              <div class="main100-form-bgbtn"></div>
-              <button type="button" class="main100-form-btn" name="">
-                SUIVANT
-              </button>
-            </div>
-          </div>
+          
 
           
             
@@ -549,14 +455,7 @@ include ("database.php");
 
 
 
-          <div class="container-main-form-btn" style="     display: none; padding-top: 60px;">
-            <div class="wrap-main100-form-btn" style="width: 30%;float: right;">
-              <div class="main100-form-bgbtn"></div>
-              <button type="button" class="main100-form-btn" name="">
-                SUIVANT
-              </button>
-            </div>
-          </div>
+     
 
 
 </div>
@@ -579,7 +478,7 @@ include ("database.php");
             
 
  
-<!-- 
+
   <div class="col-md-2" style="text-align: center;margin-top: 9px;">
            <label>nom distruber : </label></div>
            <div class="col-md-3">
@@ -590,33 +489,15 @@ include ("database.php");
 
           </div> 
           </div> 
- -->
 
 
 
 
 
-       
-            <div class="col-md-2" style="text-align: center;margin-top: 9px;">
-           <label>nom distruber : </label></div>
-           <div class="col-md-3">
-            <select class="form-control" name="nomdistruber" id="nomdistruber" >
-            <option></option>
-          <option>AgenceX</option>
-            </select>
-          </div> 
-          </div> 
 
 
 
-           <div class="container-main-form-btn" style="   display: none; padding-top: 60px;">
-            <div class="wrap-main100-form-btn" style="width: 30%;float: right;">
-              <div class="main100-form-bgbtn"></div>
-              <button type="button" class="main100-form-btn" name="">
-                SUIVANT
-              </button>
-            </div>
-          </div>
+           
 
 
 </div>
@@ -693,15 +574,7 @@ include ("database.php");
           </div>
 
 
-              <div class="container-main-form-btn" style=" padding-top: 60px;">
-            <div class="wrap-main100-form-btn">
-              <div class="main100-form-bgbtn"></div>
-              <button type="submit" class="main100-form-btn" name="Validerprojet">
-                Ajouter
-              </button>
-            </div>
-          </div>
-
+             
 
 
 </div>
@@ -715,58 +588,11 @@ include ("database.php");
 
 
 
-</form>
 
 </div>
 </div>
 </div>
 
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-
-// On reprend le même id que dans le précédent chapitre
-
- $(document).ready(function(){
-
-
-$("#roledistruber").change(function(e){
- //  alert('La deuxième ');
-   e.preventDefault();
-
-    var roledistruber = $('#roledistruber').val();
-
-
-
-     $.ajax({
-            type: 'POST',
-            url: 'load_data.php', 
-            data: {roledistruber: roledistruber}
-        })
-        .done(function(data){
-             
-            // show the response
-            //alert( "YES." );
-            $('#nomdistruber').html(data);
-             
-        })
-        .fail(function() {
-         
-            // just in case posting your form failed
-            alert( "Posting failed." );
-             
-        });
- 
-        // to prevent refreshing the whole page page
-        return false;
-
-
-});
-
-});
-
-</script>
 
 
 

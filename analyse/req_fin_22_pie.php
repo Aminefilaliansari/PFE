@@ -23,9 +23,13 @@
 
 if($stmt = $connection->query("
 
-SELECT  zone.commune, COUNT(projet.IdProjet) FROM `projet` INNER JOIN zone ON projet.IdProjet=zone.idprojet
-WHERE projet.booleenPDR=1
-GROUP BY zone.commune
+(SELECT CONCAT(' ETAT ',zone.commune) as ann,SUM(financeprojet.Contrib_Etat) FROM `financeprojet`INNER JOIN zone ON financeprojet.idprojet = zone.idprojet
+
+GROUP BY zone.commune )
+UNION
+(SELECT CONCAT(' ETABLISSEMENT ',zone.commune) as ann,SUM(financeprojet.Contrib_Etabli) FROM `financeprojet`INNER JOIN  zone ON financeprojet.idprojet = zone.IdZone
+GROUP BY zone.commune )
+
 
   ")){
 
@@ -44,7 +48,7 @@ echo $connection->error;
 
 // Transfor PHP array to JavaScript two dimensional array 
 echo "<script>
-        var my_2d03 = ".json_encode($php_data_array)."
+        var my_2d22 = ".json_encode($php_data_array)."
 </script>
 "
 
@@ -57,15 +61,15 @@ echo "<script>
 
 
 
-<span id="titreanalyse" class="main100-form-title">3  - Proposition de la relation de projet avec le PDR selon Commune et provaince :  </span>
+<span class="main100-form-title">2  - Financement du projet par Commune :  </span>
 <div class="row  justify-content-center"  style="text-align:center">
 <form method="POST" action>
-<label style="margin-top: 30px;">Provaince : </label style="">
+<label style="margin-top: 30px;">Commune : </label style="">
 <div  style="margin: auto;width: 350px;">
-<input type="text" class="form-control" name="provaince03" id="provaince03" placeholder="">
-<input type="button" class="main100-form-btn" value="Recherche" id="Rech03" name="Rech03" style="z-index: 2;position: relative;">
+<input type="text" class="form-control" name="commune22" id="commune22" placeholder="">
+<input type="button" class="main100-form-btn" value="Recherche" id="Rech22" name="Rech22" style="z-index: 2;position: relative;">
 </div>
-<div id="req_pdr_03_pie" style="margin-left: 178px; margin-top: -44px;"></div>
+<div id="req_fin_22_pie" style="margin-left: 178px; margin-top: -44px;"></div>
 </form>
 </div>
 
@@ -86,15 +90,15 @@ echo "<script>
         var data = new google.visualization.DataTable();
         data.addColumn('string', '');
         data.addColumn('number', '');
-		for(i = 0; i < my_2d03.length; i++)
-    data.addRow([my_2d03[i][0], parseInt(my_2d03[i][1])]);
+		for(i = 0; i < my_2d22.length; i++)
+    data.addRow([my_2d22[i][0], parseInt(my_2d22[i][1])]);
 // above row adds the JavaScript two dimensional array data into required chart format
-    var options = {title:'3  - Proposition de la relation de projet avec le PDR selon Commune et provaince :  ',
+    var options = {title:' ',
                        width:1150,
                        height:700};
 
         // Instantiate and draw the chart
-        var chart = new google.visualization.PieChart(document.getElementById('req_pdr_03_pie'));
+        var chart = new google.visualization.PieChart(document.getElementById('req_fin_22_pie'));
         chart.draw(data, options);
       }
 </script>
@@ -112,24 +116,24 @@ echo "<script>
  $(document).ready(function(){
 
 
-$("#Rech03").click(function(e){
+$("#Rech22").click(function(e){
    alert('La deuxième zone a été mise à jour');
    e.preventDefault();
 
-    var provaince03 = $('#provaince03').val();
+    var commune22 = $('#commune22').val();
 
 
 
      $.ajax({
             type: 'POST',
-            url: 'analyse/data_pie/data_req_pdr_03_pie.php', 
-            data: {ajax: 1,provaince03: provaince03}
+            url: 'analyse/data_pie/data_req_fin_22_pie.php', 
+            data: {ajax: 1,commune22: commune22}
         })
         .done(function(data){
              
             // show the response
             //alert( "YES." );
-            $('#req_pdr_03_pie').html(data);
+            $('#req_fin_22_pie').html(data);
              
         })
         .fail(function() {

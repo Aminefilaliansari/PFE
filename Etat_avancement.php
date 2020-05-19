@@ -99,7 +99,7 @@ exit();
          
 		  <label align="right">Etat d'avancement du projet en % : </label>
 
-<input type="number"class="form-control" placeholder="  %"   id="etat" name="etat" min="10" max="100" value="<?php  echo $fetchRow['Etat'];  ?>">
+<input type="number"class="form-control" placeholder="  %"   id="etat" name="etat" min="0" max="100" value="<?php  echo $fetchRow['Etat'];  ?>">
 
 
 
