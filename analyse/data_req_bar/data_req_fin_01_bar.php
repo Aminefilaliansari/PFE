@@ -9,7 +9,7 @@ $sqlQuery = "
 SELECT SUM(financeprojet.Contrib_Etat+financeprojet.Contrib_Etabli)AS sumfinancement, YEAR(dateprojet.dateAuthentif) as datee FROM `financeprojet`INNER JOIN dateprojet ON financeprojet.idprojet = dateprojet.idprojet
 GROUP BY YEAR(dateprojet.dateAuthentif)
 ORDER BY YEAR(dateprojet.dateAuthentif) DESC
-
+LIMIT 10
 ";
 
 $result = mysqli_query($conn,$sqlQuery);
