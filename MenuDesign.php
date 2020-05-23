@@ -75,8 +75,10 @@
 
                                      <?php } ?>
 
-</center>
 
+
+</center>
+<a href="Deconnected.php" style="float: right;margin-right: 106px;">Déconnextion </a>
 
 </body>
 </html>
