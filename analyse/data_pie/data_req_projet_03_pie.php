@@ -75,7 +75,7 @@ echo "<script>
     for(i = 0; i < my_2d003.length; i++)
     data.addRow([my_2d003[i][0], parseInt(my_2d003[i][1])]);
 // above row adds the JavaScript two dimensional array data into required chart format
-    var options = {title:'3 -  Proposition de projet selon l annee projet et champ de projet : ',
+    var options = {title:'',
                        width:1150,
                        height:700};
 

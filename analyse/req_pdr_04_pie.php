@@ -52,7 +52,7 @@ echo "<script>
 		for(i = 0; i < my_2d04.length; i++)
     data.addRow([my_2d04[i][0], parseInt(my_2d04[i][1])]);
 // above row adds the JavaScript two dimensional array data into required chart format
-    var options = {title:'4  -  Proposition de la relation de projet avec le PDR selon Type de commune : ',
+    var options = {title:'',
                        width:1150,
                        height:700};
 

@@ -98,7 +98,7 @@ $ID_PROJET0=$page;
 
 
    echo "<div class='alert alert-success' role='alert'>
-  Le projet est modifier avec succèe
+  Le projet a été modifié avec succèe
 </div>";
   }
   
@@ -119,7 +119,30 @@ $ID_PROJET0=$page;
 
   
 <!--  TABLE  projet -->
+<ul class="nav nav-tabs" style="margin-bottom: 70px;">
+            <li class="nav-item">
+              <a href="#infoprojet" class="nav-link active" role="tab" data-toggle="tab">Information projet</a>
+            </li>
 
+            <li class="nav-item">
+              <a href="#dateprojet" class="nav-link" role="tab" data-toggle="tab">Date projet </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#zone" class="nav-link" role="tab" data-toggle="tab">La zone</a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#distribuer" class="nav-link" role="tab" data-toggle="tab">Distribuer</a>
+            </li>
+              <li class="nav-item">
+              <a href="#financement" class="nav-link" role="tab" data-toggle="tab">Financement</a>
+            </li>
+         
+           
+            </ul>
+  <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="infoprojet">
 
 <?php  
 //LES CHAMPS TABLE PROJE
@@ -217,9 +240,10 @@ $ID_PROJET0=$page;
             <span class="focus-input100"></span>
           </div> 
 
-
+ </div>
 
           <!--  TABLE Date de projet -->
+<div role="tabpanel" class="tab-pane" id="dateprojet">
 
 
           <?php  
@@ -266,9 +290,11 @@ $ID_PROJET0=$page;
 
 
 
+ </div>
 
           <!--  TABLE zone  -->
 
+<div role="tabpanel" class="tab-pane" id="zone">          
 
 
           <?php  
@@ -310,7 +336,7 @@ $ID_PROJET0=$page;
  
         <span class="label-input100">Commune</span>
           <div>
-            <select class="selection-2" name="commune" id="commune">
+            <select class="selection-2"  name="commune" id="commune">
             <option><?php echo $row["commune"];?></option>
               <option>--------</option>
               <option></option>
@@ -330,10 +356,12 @@ $ID_PROJET0=$page;
             </select>
           </div> 
          </div> 
+ </div>
 
 
 <!--  TABLE distruberprojet  -->
             
+<div role="tabpanel" class="tab-pane" id="distribuer">
 
             <?php  
       //LES CHAMPS TABLE distru
@@ -360,27 +388,92 @@ $ID_PROJET0=$page;
            <option></option> 
           <option>AgenceX</option>
             </select>
-          </div>  
+          </div>   
+           </div>  
 
-   
-
-         
+   <div role="tabpanel" class="tab-pane " id="financement"> 
 
 
-      
-        
+ <div class="row  justify-content-center p-b-15" >
+           <div class="col-md-3" style="text-align: center;">
+           <label>Contribution Etat : </label></div>
+           <div class="col-md-8">
+              <div class="wrap-input100 validate-input">
+            <input class="input100" type="number" name="Contrib_Etat" id="Contrib_Etat" value="<?php echo $fetchRow['Contrib_Etat'] ?>" disabled="disabled" >
+              <span class="focus-input100"></span>
+          </div>
+          </div>
+          </div>
+
+
+           <div class="row  justify-content-center p-b-15" >
+           <div class="col-md-3" style="text-align: center;">
+           <label>Contribution Etablissement : </label></div>
+           <div class="col-md-8">
+              <div class="wrap-input100 validate-input">
+            <input class="input100" type="number" name="Contrib_Etabli" id="Contrib_Etabli" value="<?php echo $fetchRow['Contrib_Etabli'] ?>" disabled="disabled" >
+              <span class="focus-input100"></span>
+          </div>
+          </div>
+          </div>
+
+
+
+
+           <div class="row  justify-content-center p-b-15" >
+           <div class="col-md-3" style="text-align: center;margin-top: 9px;">
+           <label>Nbr Etablissement: </label></div>
+           <div class="col-md-8">
+              <div class="wrap-input100 validate-input">
+            <input class="input100" type="number" name="NbrEtab" id="NbrEtab"  value="<?php echo $fetchRow['NbrEtab'] ?>"disabled="disabled" >
+              <span class="focus-input100"></span>
+          </div>
+          </div>
+          </div>
+
+
+
+
+           <div class="row  justify-content-center p-b-15" >
+           <div class="col-md-3" style="text-align: center;margin-top: 9px;">
+           <label>DurAdmin : </label></div>
+           <div class="col-md-8">
+              <div class="wrap-input100 validate-input">
+            <input class="input100" type="number" name="durAdmin" id="durAdmin" value="<?php echo $fetchRow['durAdmin'] ?>" disabled="disabled" >
+              <span class="focus-input100"></span>
+          </div>
+          </div>
+          </div>
+
+
+
+           <div class="row  justify-content-center p-b-15" >
+           <div class="col-md-3" style="text-align: center;margin-top: 9px;">
+           <label>DurEtablissement : </label></div>
+           <div class="col-md-8">
+              <div class="wrap-input100 validate-input">
+            <input class="input100" type="number" name="durEtabli" id="durEtabli" value="<?php echo $fetchRow['durEtabli'] ?>"disabled="disabled"  >
+              <span class="focus-input100"></span>
+          </div>
+          </div>
+          </div>
+
+
+
+
+</div>
 
 		<div class="container-main-form-btn" style=" padding-top: 60px;">
             <div class="wrap-main100-form-btn">
               <div class="main100-form-bgbtn"></div>
               <button type="submit" class="main100-form-btn" name="Validerprojet">
-                Ajouter
+               Enregistrer les modifications
               </button>
             </div>
           </div>
 
 
-
+</div>
 </form>
 
 </div>

@@ -19,7 +19,9 @@
 <header>
   
 <?php  
-include "MenuDesign.php";
+
+   include "MenuDesign.php";
+
 ?>
 
 
@@ -36,10 +38,7 @@ include "MenuDesign.php";
   <div class="limiter">
     <div class="container-main100">
       <div class="wrap-main-body">
-          <span class="main100-form-title p-b-26">
-           ACCUEIL
-          </span>
-
+          
 
 
 <div class="row justify-content-center">
@@ -104,12 +103,52 @@ include "Map.php";
                 <div role="tabpanel" class="tab-pane active" id="analysepdr">
 
            <div class="row  justify-content-center p-b-15" >
+
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"> 1 - Proportion de la relation de projet avec le PDR selon l'année :</legend>
+    
+     <?php  include "./analyse/req_pdr_01_pie.php";?>
+
+</fieldset>
+
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"> 2 - Proportion de la relation de projet avec le PDR selon provaince :</legend>
+    
+     <?php  include "./analyse/req_pdr_02_pie.php";?>
+
+</fieldset>
+
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"> 3 - Proportion de la relation de projet avec le PDR selon commune et provaince :</legend>
+    
+     <?php  include "./analyse/req_pdr_03_pie.php";?>
+
+</fieldset>
+
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"> 4 - Proportion de la relation de projet avec le PDR selon type de commune :</legend>
+    
+     <?php  include "./analyse/req_pdr_04_pie.php";?>
+
+</fieldset>
+
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"> 5 - Proportion de la relation de projet avec le PDR selon type de commune d'une provaince :</legend>
+    
+     <?php  include "./analyse/req_pdr_05_pie.php";?>
+
+</fieldset>
+
+
+
+
            
-              <?php  include "./analyse/req_pdr_01_pie.php";?>
-               <?php  include "./analyse/req_pdr_02_pie.php";?>
-               <?php  include "./analyse/req_pdr_03_pie.php";?>
-               <?php  include "./analyse/req_pdr_04_pie.php";?>
-               <?php  include "./analyse/req_pdr_05_pie.php";?>
+            
             
            </div>
 
@@ -124,11 +163,32 @@ include "Map.php";
 
            <div class="row  justify-content-center p-b-15" >
 
-            <?php  include "./analyse/req_projet_01_bar.php";?>
-           <?php  include "./analyse/req_projet_02_bar.php";?>
-           <?php  include "./analyse/req_projet_03_pie.php";?>
-           <?php  include "./analyse/req_projet_04_pie.php";?>
 
+
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"> 1 - Proportion de projet selon l'année projet et champ de projet : </legend>
+            <?php  include "./analyse/req_projet_03_pie.php";?>
+</fieldset>
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"> 2 - Nombre de projet de chaque Provaince : </legend>
+            <?php  include "./analyse/req_projet_01_bar.php";?>
+</fieldset>
+
+
+
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"> 3 - Proportion de projet selon la specialite (Unique ou Commune) : </legend>
+            <?php  include "./analyse/req_projet_04_pie.php";?>
+</fieldset>            
+         
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"> 4 - Nombre de projet de chaque année et provaince : </legend>
+            <?php  include "./analyse/req_projet_02_bar.php";?>
+</fieldset>          
 
            </div>
         
@@ -140,18 +200,46 @@ include "Map.php";
 
            <div class="row  justify-content-center p-b-15" >
 
-
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"> 1 - Financement du projet par l'année :</legend>
              <?php  include "./analyse/req_fin_11_pie.php";?>  
              <?php  include "./analyse/req_fin_01_bar.php";?>
+             </fieldset>
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"> 2 - Financement du projet par Commune :</legend>      
              <?php  include "./analyse/req_fin_22_pie.php";?> 
-              <?php  include "./analyse/req_fin_02_bar.php";?>
+             <?php  include "./analyse/req_fin_02_bar.php";?>
+             </fieldset>
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"> 3 - Financement du projet par Type commune :</legend>             
               <?php  include "./analyse/req_fin_33_pie.php";?> 
               <?php  include "./analyse/req_fin_03_bar.php";?>
+              </fieldset>
+
+
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"> 4 - Financement du projet par Champ de projet  :</legend>                 
               <?php  include "./analyse/req_fin_44_pie.php";?> 
               <?php  include "./analyse/req_fin_04_bar.php";?>
+              </fieldset>
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"> 6 - Coût d'Admin ( RURAL & URBAIN ) :</legend>   
               <?php  include "./analyse/req_fin_66_pie.php";?> 
-              <?php  include "./analyse/req_fin_77_pie.php";?> 
-              <?php  include "./analyse/req_fin_88_pie.php";?> 
+              </fieldset>
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"> 7 - Coût d'Etablissement ( RURAL & URBAIN ) :</legend>                 
+              <?php  include "./analyse/req_fin_77_pie.php";?>
+              </fieldset>
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border"> 8 - Total financement ( RURAL & URBAIN ) :</legend>                  
+              <?php  include "./analyse/req_fin_88_pie.php";?>
+              </fieldset> 
 
            </div>
         

@@ -12,9 +12,6 @@
   <link rel="stylesheet" type="text/css" href="./css/util.css">
   <link rel="stylesheet" type="text/css" href="./css/main.css">
 <!--===============================================================================================-->
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-
-
 
 </head>
 <header>
@@ -37,13 +34,13 @@ include "MenuDesign.php";
 <div class="container">
 <div class="row justify-content-center">
 
-<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+<table class="table">
  <thead>
    <tr>
-     <th class="th-sm">ID Projet</th>
-     <th class="th-sm">Titre de projet </th>
-     <th class="th-sm">Etat d'avancement</th> 
-     <th  class="th-sm" colspan="2">Action</th>
+     <th>ID Projet</th>
+     <th>Titre de projet </th>
+     <th>Nom d excute</th>
+     <th colspan="2">Action</th>
    </tr>
 
 
@@ -53,7 +50,7 @@ include "MenuDesign.php";
 
 
 include("database.php");
- $sql = "SELECT * FROM projet INNER JOIN avancementprojet on projet.IdProjet = avancementprojet.idprojet";
+ $sql = "SELECT * FROM projet INNER JOIN distruberprojet ON projet.IdProjet = distruberprojet.idprojet";
 $result = mysqli_query($bdd,$sql);
 
 
@@ -61,7 +58,8 @@ while ( $row = mysqli_fetch_array($result,MYSQLI_ASSOC) ) {  ?>
 
 <?php  
 $iduser00=1;
- $sql0 = "SELECT NomExcute FROM distruberprojet WHERE iduser =".$iduser00;  
+//$sql0 = "SELECT NomExcute FROM distruberprojet WHERE iduser =".$iduser00;  
+$sql0 = "SELECT NomExcute FROM distruberprojet ";  
   $result0 = mysqli_query($bdd,$sql0);
   $row0 = mysqli_fetch_array($result0,MYSQLI_ASSOC);      
   $NomExcute= $row0["NomExcute"];
@@ -72,19 +70,23 @@ $iduser00=1;
 <tr>
 <td id="IdProjet"><?php echo $row["IdProjet"];  ?></td>
 <td id="TitreProjet"><?php echo $row["TitreProjet"];  ?></td>
-<td id="TitreProjet">
+<td id="NomExcute">
 
-<?php if($row["Etat"]==NULL){echo "0%";}
-      else {echo $row["Etat"]."%" ;}
+
+<?php if($row["NomExcute"]==NULL){echo "Admin";}
+      else {echo $row["NomExcute"] ;}
 
  ?>
 
- </td>
+
+
+
+</td>
 <td>
-  <a href="Etat_avancement.php?Etat=<?php echo $row["IdProjet"]; ?>" 
-  class="btn btn-warning" name="<?php echo $row["IdProjet"]; ?>">Modifer Etat D'avancement</a>
-  <a href="detail.php?idprojet=<?php echo $row["IdProjet"]; ?>" 
-  class="btn btn-info" name="<?php echo $row["IdProjet"]; ?>">Detail de projet</a>
+  <a href="ModifProjet.php?Modif=<?php echo $row["IdProjet"]; ?>" 
+  class="btn btn-info" name="<?php echo $row["IdProjet"]; ?>">Modifer</a>
+  <a href="ModifProjet.php?Modif=<?php echo $row["IdProjet"]; ?>" 
+  class="btn btn-info" name="<?php echo $row["IdProjet"]; ?>">plus de détail</a>
 </td>
 </tr>
 
@@ -103,16 +105,6 @@ $iduser00=1;
 
 
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-<script>
-
-$(document).ready(function() {
-$('#dtBasicExample').DataTable();
-} );
-
-
-</script>
 
 
  <!--===============================================================================================-->

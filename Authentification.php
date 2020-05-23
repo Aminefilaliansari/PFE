@@ -54,13 +54,16 @@ if( isset($_POST['email']) && isset($_POST['pass']) && isset($_POST['submit']) &
         
       if($count == 1) 
       {
+
          if($passoriginal == $row['Password'])
                 {
                      $_SESSION['email'] = $row['email'];
-                     $_SESSION['id'] = $row['IdAdmin'];
                      $_SESSION['nom'] = $row['Nom'];
+
                      $_SESSION['role'] = $role;
 
+      if ($role =="Agence" || $role=="Etablissement") { $_SESSION['id'] = $row['IdUser'];  }
+      else { $_SESSION['id'] = $row['IdAdmin']; }                             
                      
 
                      header('Location: Accueil.php?id='.$_SESSION['id'].'');

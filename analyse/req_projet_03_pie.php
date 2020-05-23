@@ -35,20 +35,37 @@ echo "<script>
 ?>
 
 
-<span id="titreanalyse" class="main100-form-title">3 -  Proposition de projet selon l annee projet et champ de projet : </span>
-<div class="row  justify-content-center"  style="text-align:center">
-<form method="POST" action>
-<label style="margin-top: 30px;">l'année : </label style="">
-<div  style="margin: auto;width: 350px;">
-<input type="text" class="form-control" name="annee03" id="annee03" placeholder="">
-<input type="button" class="main100-form-btn" value="Recherche" id="Rech_projet03" name="Rech_projet03" style="z-index: 2;position: relative;">
+
+
+<div class="row">
+<form>
+<label style="margin-top: 30px;margin-left:217px;">L'année : </label style="">
+<div  style="margin-left:217px;width: 350px;">
+
+<select class="form-control" name="annee03" id="annee03" placeholder="">
+<option></option>
+
+ <?php  
+           
+               $sql = "SELECT DISTINCT(YEAR(dateAuthentif)) as annee FROM `dateprojet`";
+              $result = mysqli_query($connection,$sql);
+
+
+
+
+
+             while ( $row = mysqli_fetch_array($result,MYSQLI_ASSOC) ) {  ?> 
+
+             <option><?php echo $row['annee'];  ?></option>
+            <?php }  ?>
+
+</select>
+
+
 </div>
-<div id="req_projet_03_pie" style="margin-left: 178px; margin-top: -44px;"></div>
+<div id="req_projet_03_pie" style="margin-top: 0px;"></div>
 </form>
 </div>
-
-
-
 
 
 
@@ -72,7 +89,7 @@ echo "<script>
 		for(i = 0; i < my_2d003.length; i++)
     data.addRow([my_2d003[i][0], parseInt(my_2d003[i][1])]);
 // above row adds the JavaScript two dimensional array data into required chart format
-    var options = {title:'3 -  Proposition de projet selon l annee projet et champ de projet : ',
+    var options = {title:'',
                        width:1150,
                        height:700};
 
@@ -107,8 +124,8 @@ echo "<script>
  $(document).ready(function(){
 
 
-$("#Rech_projet03").click(function(e){
-   alert('La deuxième zone a été mise à jour');
+$("#annee03").change(function(e){
+  // alert('La deuxième zone a été mise à jour');
    e.preventDefault();
 
     var annee03 = $('#annee03').val();
@@ -123,7 +140,7 @@ $("#Rech_projet03").click(function(e){
         .done(function(data){
              
             // show the response
-            alert( "YES." );
+           // alert( "YES." );
             $('#req_projet_03_pie').html(data);
              
         })

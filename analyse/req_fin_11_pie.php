@@ -25,7 +25,7 @@ if($stmt = $connection->query("
 
 
 
-(SELECT CONCAT(' ETAT ',YEAR(dateprojet.dateAuthentif)) as ann,SUM(financeprojet.Contrib_Etat) FROM `financeprojet`INNER JOIN dateprojet ON financeprojet.idprojet = dateprojet.idprojet
+(SELECT CONCAT(' ADMIN ',YEAR(dateprojet.dateAuthentif)) as ann,SUM(financeprojet.Contrib_Etat) FROM `financeprojet`INNER JOIN dateprojet ON financeprojet.idprojet = dateprojet.idprojet
 
 GROUP BY YEAR(dateprojet.dateAuthentif) )
 UNION
@@ -64,17 +64,48 @@ echo "<script>
 
 
 
-<span class="main100-form-title">1  - Financement du projet par l'année :  </span>
-<div class="row  justify-content-center"  style="text-align:center">
-<form >
-<label style="margin-top: 30px;">L'année : </label style="">
-<div  style="margin: auto;width: 350px;">
-<input type="text" class="form-control" name="annee11" id="annee11" placeholder="">
-<input type="button" class="main100-form-btn" value="Recherche" id="Rech11" name="Rech11" style="z-index: 2;position: relative;">
+
+
+
+
+
+<div class="row">
+<form>
+<label style="margin-top: 30px;margin-left:217px;">L'année : </label style="">
+<div  style="margin-left:217px;width: 350px;">
+
+<select class="form-control" name="annee11" id="annee11" placeholder="">
+<option></option>
+
+ <?php  
+           
+               $sql = "SELECT DISTINCT(YEAR(dateAuthentif)) as annee FROM `dateprojet`";
+              $result = mysqli_query($connection,$sql);
+
+
+
+
+
+             while ( $row = mysqli_fetch_array($result,MYSQLI_ASSOC) ) {  ?> 
+
+             <option><?php echo $row['annee'];  ?></option>
+            <?php }  ?>
+
+</select>
+
+
 </div>
-<div id="req_fin_11_pie" style="margin-left: 178px; margin-top: -44px;"></div>
+<div id="req_fin_11_pie" style="margin-top: 0px;"></div>
 </form>
 </div>
+
+
+
+
+
+
+
+
 
 
 
@@ -119,8 +150,8 @@ echo "<script>
  $(document).ready(function(){
 
 
-$("#Rech11").click(function(e){
-   alert('La deuxième zone a été mise à jour');
+$("#annee11").change(function(e){
+   //alert('La deuxième zone a été mise à jour');
    e.preventDefault();
 
     var annee11 = $('#annee11').val();

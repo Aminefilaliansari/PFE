@@ -35,17 +35,39 @@ echo "<script>
 ?>
 
 
-<span id="titreanalyse" class="main100-form-title">5  -  Proposition de la relation de projet avec le PDR selon de le type de commune d une provaince : </span>
-<div class="row  justify-content-center"  style="text-align:center">
-<form method="POST" action>
-<label style="margin-top: 30px;">Provaince : </label style="">
-<div  style="margin: auto;width: 350px;">
-<input type="text" class="form-control" name="provaince05" id="provaince05" placeholder="">
-<input type="button" class="main100-form-btn" value="Recherche" id="Rech05" name="Rech05" style="z-index: 2;position: relative;">
+
+
+<div class="row">
+<form>
+<label style="margin-top: 30px;margin-left:217px;">Provaince : </label style="">
+<div  style="margin-left:217px;width: 350px;">
+
+<select class="form-control" name="provaince05" id="provaince05" placeholder="">
+<option></option>
+
+ <?php  
+           
+               $sql = "SELECT DISTINCT(provaince) FROM `zone`";
+              $result = mysqli_query($connection,$sql);
+
+
+
+
+
+             while ( $row = mysqli_fetch_array($result,MYSQLI_ASSOC) ) {  ?> 
+
+             <option><?php echo $row['provaince'];  ?></option>
+            <?php }  ?>
+
+</select>
+
+
 </div>
-<div id="req_pdr_05_pie" style="margin-left: 178px; margin-top: -44px;"></div>
+<div id="req_pdr_05_pie" style="margin-top: 0px;"></div>
 </form>
 </div>
+
+
 
 
 
@@ -65,7 +87,7 @@ echo "<script>
 		for(i = 0; i < my_2d05.length; i++)
     data.addRow([my_2d05[i][0], parseInt(my_2d05[i][1])]);
 // above row adds the JavaScript two dimensional array data into required chart format
-    var options = {title:'5  -  Proposition de la relation de projet avec le PDR selon de le type de commune d une provaince :',
+    var options = {title:'',
                        width:1150,
                        height:700};
 
@@ -88,8 +110,8 @@ echo "<script>
  $(document).ready(function(){
 
 
-$("#Rech05").click(function(e){
-   alert('La deuxième zone a été mise à jour');
+$("#provaince05").change(function(e){
+   // alert('La deuxième zone a été mise à jour');
    e.preventDefault();
 
     var provaince05 = $('#provaince05').val();
@@ -104,7 +126,7 @@ $("#Rech05").click(function(e){
         .done(function(data){
              
             // show the response
-            alert( "YES." );
+           // alert( "YES." );
             $('#req_pdr_05_pie').html(data);
              
         })

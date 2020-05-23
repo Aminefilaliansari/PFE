@@ -65,17 +65,39 @@ echo "<script>
 
 
 
-<span class="main100-form-title"> Total financement ( RURAL & URBAIN ) :   </span>
-<div class="row  justify-content-center"  style="text-align:center">
-<form method="POST" action>
-<label style="margin-top: 30px;">provaince : </label style="">
-<div  style="margin: auto;width: 350px;">
-<input type="text" class="form-control" name="provaince88" id="provaince88" placeholder="">
-<input type="button" class="main100-form-btn" value="Recherche" id="Rech88" name="Rech88" style="z-index: 2;position: relative;">
+
+
+
+<div class="row">
+<form>
+<label style="margin-top: 30px;margin-left:217px;">Provaince : </label style="">
+<div  style="margin-left:217px;width: 350px;">
+
+<select class="form-control" name="provaince88" id="provaince88" placeholder="">
+<option></option>
+
+ <?php  
+           
+               $sql = "SELECT DISTINCT(provaince) FROM `zone`";
+              $result = mysqli_query($connection,$sql);
+
+
+
+
+
+             while ( $row = mysqli_fetch_array($result,MYSQLI_ASSOC) ) {  ?> 
+
+             <option><?php echo $row['provaince'];  ?></option>
+            <?php }  ?>
+
+</select>
+
+
 </div>
-<div id="req_fin_88_pie" style="margin-left: 178px; margin-top: -44px;"></div>
+<div id="req_fin_88_pie" style="margin-top: 0px;"></div>
 </form>
 </div>
+
 
 
 
@@ -120,8 +142,8 @@ echo "<script>
  $(document).ready(function(){
 
 
-$("#Rech88").click(function(e){
-   alert('La deuxième zone a été mise à jour');
+$("#provaince88").change(function(e){
+   //alert('La deuxième zone a été mise à jour');
    e.preventDefault();
 
     var provaince88 = $('#provaince88').val();
